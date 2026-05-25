@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lil Nationz - Ayiti Chéri 2026 Registration</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@400;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #003087;
+    --red: #D21034;
+    --gold: #C8971A;
+    --gold-light: #F0C040;
+    --white: #FFFFFF;
+    --off-white: #F8F8F8;
+    --card-bg: #FFFFFF;
+    --border: #E0E4F0;
+    --text: #1a1a2e;
+    --text-light: #5a6080;
+    --input-bg: #FAFBFF;
+  }
+
+  html { background-color: #F8F8F8 !important; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background-color: #F8F8F8 !important;
+    color: #1a1a2e !important;
+    font-family: 'Montserrat', sans-serif;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header-stripe {
+    height: 6px;
+    background: linear-gradient(90deg, var(--blue) 33.33%, var(--red) 33.33%, var(--red) 66.66%, var(--gold) 66.66%);
+  }
+
+  .header-inner {
+    padding: 2rem 1rem 1.75rem;
+    position: relative;
+  }
+
+  .header-feathers {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .banner-logo {
+    max-width: 320px;
+    width: 85%;
+    margin: 0 auto 1.25rem;
+    display: block;
+  }
+
+  .haiti-flag {
+    width: 80px;
+    height: 48px;
+    margin: 0 auto 1rem;
+    display: block;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  }
+
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 5vw, 3.2rem);
+    font-weight: 800;
+    line-height: 1.05;
+    color: var(--blue);
+    letter-spacing: -0.5px;
+  }
+
+  header h1 .ayiti { color: var(--blue); }
+  header h1 .cheri { color: var(--red); }
+  header h1 .year { color: var(--gold); }
+
+  header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(0.8rem, 2.5vw, 1.1rem);
+    color: var(--text-light);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-top: 0.4rem;
+    font-weight: 600;
+  }
+
+  .section-leader-bar {
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    color: var(--text-light);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  .section-leader-bar strong {
+    color: var(--red);
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    display: block;
+    margin-top: 0.2rem;
+  }
+
+  /* FORM */
+  .form-container {
+    max-width: 680px;
+    margin: 2rem auto;
+    padding: 0 1rem 4rem;
+  }
+
+  /* DEPOSIT BANNER */
+  .deposit-banner {
+    background: linear-gradient(135deg, #f0f4ff, #e8eeff);
+    border: 1.5px solid var(--blue);
+    border-radius: 14px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.75rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .deposit-banner::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 3px;
+    background: linear-gradient(90deg, var(--blue), var(--red), var(--gold));
+  }
+
+  .deposit-banner .dep-icon { font-size: 1.5rem; flex-shrink: 0; }
+
+  .deposit-banner > div > strong {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--blue);
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+
+  .deposit-banner p {
+    font-size: 0.85rem;
+    line-height: 1.65;
+    color: var(--text-light);
+  }
+
+  .dep-email { color: var(--blue); font-weight: 700; }
+
+  /* SECTION CARDS */
+  .section-card {
+    background: #FFFFFF;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.75rem;
+    margin-bottom: 1.25rem;
+    box-shadow: 0 2px 12px rgba(0,48,135,0.05);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .section-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 3px;
+    background: linear-gradient(90deg, var(--blue), var(--red), var(--gold));
+    border-radius: 14px 14px 0 0;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--blue);
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-top: 0.25rem;
+  }
+
+  /* FIELDS */
+  .field-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .field-group.full { grid-template-columns: 1fr; }
+
+  @media (max-width: 520px) {
+    .field-group { grid-template-columns: 1fr; }
+  }
+
+  .field { margin-bottom: 0; }
+
+  label {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin-bottom: 0.4rem;
+  }
+
+  input, select, textarea {
+    width: 100%;
+    background: #FAFBFF;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    padding: 0.65rem 0.9rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    appearance: none;
+  }
+
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(0,48,135,0.1);
+  }
+
+  select option { background: white; color: var(--text); }
+
+  /* GENDER */
+  .gender-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .gender-card {
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    padding: 0.65rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: #FAFBFF;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--text-light);
+    position: relative;
+  }
+
+  .gender-card input[type="radio"] {
+    position: absolute; opacity: 0; width: 0; height: 0;
+  }
+
+  .gender-card:hover { border-color: var(--blue); color: var(--blue); }
+  .gender-card.selected {
+    border-color: var(--blue);
+    background: var(--blue);
+    color: white;
+    box-shadow: 0 0 0 3px rgba(0,48,135,0.15);
+  }
+
+  /* COSTUME CARDS */
+  .costume-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .costume-card {
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem 1.1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: #FAFBFF;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .costume-card input[type="radio"] {
+    position: absolute; opacity: 0; width: 0; height: 0;
+  }
+
+  .costume-card:hover {
+    border-color: var(--blue);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,48,135,0.12);
+  }
+
+  .costume-card.selected {
+    border-color: var(--blue);
+    background: #f0f4ff;
+    box-shadow: 0 0 0 3px rgba(0,48,135,0.12);
+  }
+
+  .costume-card.selected::before {
+    content: '✓';
+    position: absolute;
+    top: 8px; right: 8px;
+    background: var(--blue);
+    color: white;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 800;
+    line-height: 20px;
+    text-align: center;
+  }
+
+  .costume-info { flex: 1; }
+
+  .costume-badge {
+    display: inline-block;
+    font-size: 0.6rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 0.35rem;
+  }
+
+  .badge-back { background: var(--blue); color: white; }
+  .badge-mid { background: #7B68EE; color: white; }
+  .badge-front { background: var(--red); color: white; }
+  .badge-ultra { background: var(--gold); color: white; }
+
+  .costume-name {
+    font-weight: 700;
+    font-size: 0.88rem;
+    color: var(--text);
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  .costume-includes-text {
+    font-size: 0.72rem;
+    color: var(--text-light);
+    line-height: 1.5;
+  }
+
+  .costume-pricing {
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .costume-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--blue);
+    display: block;
+  }
+
+  .costume-deposit {
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--red);
+    display: block;
+    margin-top: 2px;
+  }
+
+  /* GENDER SECTION DIVIDER */
+  .gender-section {
+    display: none;
+  }
+  .gender-section.visible { display: block; }
+
+  .gender-label-header {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ADDONS */
+  .addon-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .addon-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: #FAFBFF;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .addon-item:hover { border-color: var(--blue); background: #f0f4ff; }
+
+  .addon-item.addon-selected {
+    border-color: var(--blue) !important;
+    background: #f0f4ff !important;
+    box-shadow: 0 0 0 3px rgba(0,48,135,0.1) !important;
+  }
+
+  .addon-item input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 22px; height: 22px; min-width: 22px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    background: white;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.15s;
+  }
+
+  .addon-item input[type="checkbox"]:checked {
+    background: var(--blue);
+    border-color: var(--blue);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 9'%3E%3Cpath d='M1 4L4.5 7.5L11 1' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 70%;
+  }
+
+  .addon-label { flex: 1; font-size: 0.88rem; font-weight: 600; color: var(--text); }
+  .addon-note { font-size: 0.7rem; color: var(--text-light); display: block; margin-top: 1px; font-weight: 400; }
+  .addon-price { font-weight: 800; color: var(--blue); font-size: 0.95rem; }
+
+  /* PARENT TSHIRT */
+  .parent-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .parent-item {
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem;
+    background: #FAFBFF;
+  }
+
+  .parent-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.65rem;
+  }
+
+  .parent-item-name {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--blue);
+  }
+
+  .parent-item-price {
+    font-weight: 800;
+    color: var(--red);
+    font-size: 0.95rem;
+  }
+
+  .parent-size-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .parent-qty-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    margin-bottom: 0;
+  }
+
+  /* SIZE GRID */
+  .size-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  /* ERRORS */
+  .error-msg {
+    color: var(--red);
+    font-size: 0.72rem;
+    margin-top: 0.3rem;
+    display: none;
+    font-weight: 600;
+  }
+
+  /* TOTAL BAR */
+  .total-bar {
+    background: var(--blue);
+    border-radius: 14px;
+    padding: 1.4rem 1.5rem;
+    margin-bottom: 1.25rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .total-bar::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 3px;
+    background: linear-gradient(90deg, var(--red), var(--gold));
+  }
+
+  .total-bar-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .total-bar-row:last-of-type { margin-bottom: 0; }
+
+  .total-bar-divider {
+    border: none;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    margin: 0.75rem 0;
+  }
+
+  .total-bar-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.8px;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .total-bar-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.85);
+  }
+
+  .total-bar-value.highlight {
+    font-size: 1.6rem;
+    color: var(--gold-light);
+  }
+
+  .total-bar-value.deposit-val {
+    font-size: 1.35rem;
+    color: #7ee87a;
+  }
+
+  /* SUBMIT */
+  .submit-btn {
+    width: 100%;
+    background: var(--red);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 1.1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .submit-btn::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%; height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--blue));
+  }
+
+  .submit-btn:hover {
+    background: #a80e1d;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(210,16,52,0.3);
+  }
+
+  /* SUCCESS */
+  .success-message {
+    display: none;
+    background: white;
+    border: 1.5px solid var(--blue);
+    border-radius: 14px;
+    padding: 2.5rem;
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  .success-message h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--blue);
+    margin-bottom: 0.75rem;
+  }
+
+  .success-message p {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  /* FOOTER */
+  .site-footer {
+    background: var(--blue);
+    padding: 1.5rem 1rem;
+    text-align: center;
+  }
+
+  .site-footer p {
+    color: rgba(255,255,255,0.6);
+    font-size: 0.78rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .site-footer a {
+    color: var(--gold-light);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.8rem;
+  }
+
+  .contact-bar {
+    background: linear-gradient(135deg, #f0f4ff, #e8eeff);
+    border-top: 1px solid var(--border);
+    padding: 1.25rem 1rem;
+    text-align: center;
+    font-size: 0.82rem;
+    color: var(--text-light);
+    line-height: 1.9;
+  }
+
+  .contact-bar strong { color: var(--blue); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-stripe"></div>
+  <div class="header-inner">
+
+    <a href="https://www.instagram.com/4theloveofmas2?igsh=MWt1OHh6MTFoa2hueQ==" target="_blank" style="display:inline-flex;align-items:center;gap:0.4rem;background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);color:white;font-family:Montserrat,sans-serif;font-size:0.75rem;font-weight:800;letter-spacing:1px;text-decoration:none;padding:0.4rem 1rem;border-radius:20px;margin-bottom:1.25rem;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      @4theloveofmas2
+    </a>
+
+    <div class="header-feathers">
+      <svg style="position:absolute;left:-15px;top:5px;opacity:0.1;transform:rotate(-25deg)" width="160" height="200" viewBox="0 0 160 200" fill="none">
+        <path d="M80 185 C75 140 35 90 8 15 C45 55 72 85 80 185Z" fill="#003087"/>
+        <path d="M80 185 C88 130 120 78 148 12 C115 50 90 80 80 185Z" fill="#D21034"/>
+        <path d="M80 185 C70 138 18 105 4 48 C42 74 70 105 80 185Z" fill="#C8971A"/>
+        <path d="M80 185 C92 132 148 96 158 42 C122 66 95 100 80 185Z" fill="#003087" opacity="0.6"/>
+      </svg>
+      <svg style="position:absolute;right:-15px;top:5px;opacity:0.1;transform:rotate(25deg) scaleX(-1)" width="160" height="200" viewBox="0 0 160 200" fill="none">
+        <path d="M80 185 C75 140 35 90 8 15 C45 55 72 85 80 185Z" fill="#003087"/>
+        <path d="M80 185 C88 130 120 78 148 12 C115 50 90 80 80 185Z" fill="#D21034"/>
+        <path d="M80 185 C70 138 18 105 4 48 C42 74 70 105 80 185Z" fill="#C8971A"/>
+        <path d="M80 185 C92 132 148 96 158 42 C122 66 95 100 80 185Z" fill="#003087" opacity="0.6"/>
+      </svg>
+    </div>
+
+    <!-- Haiti Flag SVG -->
+    <svg class="haiti-flag" viewBox="0 0 80 48" xmlns="http://www.w3.org/2000/svg">
+      <rect width="80" height="24" fill="#003087"/>
+      <rect y="24" width="80" height="24" fill="#D21034"/>
+      <rect x="27" y="14" width="26" height="20" fill="white" opacity="0.9"/>
+      <text x="40" y="27" text-anchor="middle" font-size="8" fill="#003087" font-weight="bold">L'UNION</text>
+    </svg>
+
+    <h1>
+      <span class="ayiti">Ayiti </span>
+      <span class="cheri">Chéri </span>
+      <span class="year">2026</span>
+    </h1>
+    <h2>Lil Nationz Carnival Nation</h2>
+
+    <div class="section-leader-bar">
+      Section Leader
+      <strong>Nadea Chapman</strong>
+    </div>
+
+  </div>
+</header>
+
+<div class="form-container">
+
+  <div class="deposit-banner">
+    <div class="dep-icon">🇭🇹</div>
+    <div>
+      <strong>Deposit Required to Confirm Your Registration</strong>
+      <p>Send your deposit via e-transfer to <span class="dep-email">4theloveofmas@gmail.com</span> after submitting this form. Registration is not confirmed until deposit is received. Parent / Guardian items require full payment upfront.</p>
+    </div>
+  </div>
+
+  <form id="registrationForm" novalidate>
+
+    <!-- Personal Info -->
+    <div class="section-card">
+      <div class="section-title">&#127968; Masquerader Information</div>
+      <div class="field-group" style="margin-bottom:1rem;">
+        <div class="field">
+          <label for="firstName">First Name</label>
+          <input type="text" id="firstName" name="firstName" placeholder="First name" required>
+          <div class="error-msg" id="firstNameError">Required</div>
+        </div>
+        <div class="field">
+          <label for="lastName">Last Name</label>
+          <input type="text" id="lastName" name="lastName" placeholder="Last name" required>
+          <div class="error-msg" id="lastNameError">Required</div>
+        </div>
+      </div>
+      <div class="field-group">
+        <div class="field">
+          <label for="age">Age</label>
+          <input type="number" id="age" name="age" placeholder="Age" min="1" max="17" required>
+          <div class="error-msg" id="ageError">Required</div>
+        </div>
+        <div class="field">
+          <label>Gender</label>
+          <div class="gender-options">
+            <label class="gender-card" id="genderGirl">
+              <input type="radio" name="gender" value="Girl" required>
+              Girl
+            </label>
+            <label class="gender-card" id="genderBoy">
+              <input type="radio" name="gender" value="Boy">
+              Boy
+            </label>
+          </div>
+          <div class="error-msg" id="genderError">Required</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact -->
+    <div class="section-card">
+      <div class="section-title">&#128222; Parent / Guardian Contact</div>
+      <div class="field-group" style="margin-bottom:1rem;">
+        <div class="field">
+          <label for="parentName">Parent / Guardian Name</label>
+          <input type="text" id="parentName" name="parentName" placeholder="Full name" required>
+          <div class="error-msg" id="parentNameError">Required</div>
+        </div>
+        <div class="field">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="e.g. 647-555-0100" required>
+          <div class="error-msg" id="phoneError">Required</div>
+        </div>
+      </div>
+      <div class="field-group full">
+        <div class="field">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="your@email.com" required>
+          <div class="error-msg" id="emailError">Valid email required</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Costume Selection -->
+    <div class="section-card">
+      <div class="section-title">&#127914; Costume Selection</div>
+      <p style="font-size:0.82rem;color:var(--text-light);margin-bottom:1rem;">Select a gender above first to see available costumes.</p>
+
+      <!-- GIRLS -->
+      <div class="gender-section" id="girlsCostumes">
+        <div class="gender-label-header">Girls Costumes</div>
+        <div class="costume-options">
+          <label class="costume-card" id="card-girl-back">
+            <input type="radio" name="costume" value="Girls Backline" data-price="150" data-deposit="80">
+            <div class="costume-info">
+              <span class="costume-badge badge-back">Backline</span>
+              <span class="costume-name">Girls Backline</span>
+              <span class="costume-includes-text">Jewelled headband, jewelled neckband, decorated top and shorts, jewelled belt with back tutu, jewelled arms and leg bands, small feather collar</span>
+            </div>
+            <div class="costume-pricing">
+              <span class="costume-price">$150</span>
+              <span class="costume-deposit">$80 deposit</span>
+            </div>
+          </label>
+
+          <label class="costume-card" id="card-girl-mid">
+            <input type="radio" name="costume" value="Girls Midline" data-price="220" data-deposit="110">
+            <div class="costume-info">
+              <span class="costume-badge badge-mid">Midline</span>
+              <span class="costume-name">Girls Midline</span>
+              <span class="costume-includes-text">Jewelled tiara, jewelled neckband, decorated top and shorts, jewelled belt with full tutu skirt, jewelled arms and leg bands, medium feathered backpack</span>
+            </div>
+            <div class="costume-pricing">
+              <span class="costume-price">$220</span>
+              <span class="costume-deposit">$110 deposit</span>
+            </div>
+          </label>
+
+          <label class="costume-card" id="card-girl-front">
+            <input type="radio" name="costume" value="Girls Frontline" data-price="360" data-deposit="180">
+            <div class="costume-info">
+              <span class="costume-badge badge-front">Frontline</span>
+              <span class="costume-name">Girls Frontline</span>
+              <span class="costume-includes-text">Jewelled tiara, jewelled neckband, jewelled sleeves and bracelets, decorated top and shorts, jewelled belt with layered skirt, jewelled leg bands, large feathered backpack</span>
+            </div>
+            <div class="costume-pricing">
+              <span class="costume-price">$360</span>
+              <span class="costume-deposit">$180 deposit</span>
+            </div>
+          </label>
+
+          <label class="costume-card" id="card-girl-ultra">
+            <input type="radio" name="costume" value="Girls Ultra" data-price="0" data-deposit="0">
+            <div class="costume-info">
+              <span class="costume-badge badge-ultra">Ultra</span>
+              <span class="costume-name">Girls Ultra</span>
+              <span class="costume-includes-text">Contact section leader for price and availability</span>
+            </div>
+            <div class="costume-pricing">
+              <span class="costume-price" style="font-size:0.85rem;color:var(--text-light);">Contact for Price</span>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <!-- BOYS -->
+      <div class="gender-section" id="boysCostumes">
+        <div class="gender-label-header">Boys Costumes</div>
+        <div class="costume-options">
+          <label class="costume-card" id="card-boy-back">
+            <input type="radio" name="costume" value="Boys Backline" data-price="150" data-deposit="80">
+            <div class="costume-info">
+              <span class="costume-badge badge-back">Backline</span>
+              <span class="costume-name">Boys Backline</span>
+              <span class="costume-includes-text">Jewelled headband, decorated chest piece, jersey and shorts, jewelled belt, jewelled arm and leg bands</span>
+            </div>
+            <div class="costume-pricing">
+              <span class="costume-price">$150</span>
+              <span class="costume-deposit">$80 deposit</span>
+            </div>
+          </label>
+
+          <label class="costume-card" id="card-boy-front">
+            <input type="radio" name="costume" value="Boys Frontline" data-price="200" data-deposit="100">
+            <div class="costume-info">
+              <span class="costume-badge badge-front">Frontline</span>
+              <span class="costume-name">Boys Frontline</span>
+              <span class="costume-includes-text">Feathered mohawk headdress, decorated chest piece, jersey and shorts, jewelled belt, jewelled arm and leg bands, large feathered backpack</span>
+            </div>
+            <div class="costume-pricing">
+              <span class="costume-price">$200</span>
+              <span class="costume-deposit">$100 deposit</span>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <div class="error-msg" id="costumeError" style="margin-top:0.5rem;">Please select a costume</div>
+    </div>
+
+    <!-- Add Ons -->
+    <div class="section-card">
+      <div class="section-title">&#10024; Add-Ons</div>
+
+      <!-- Girls addons -->
+      <div class="gender-section" id="girlsAddons">
+        <p style="font-size:0.78rem;color:var(--text-light);margin-bottom:0.75rem;">Girls additional options</p>
+        <div class="addon-group">
+          <div class="addon-item" onclick="toggleAddon(this)">
+            <input type="checkbox" name="addons" value="Full Collar" data-price="20" onclick="event.stopPropagation()">
+            <span class="addon-label">Full Collar<span class="addon-note">Girls</span></span>
+            <span class="addon-price">$20</span>
+          </div>
+          <div class="addon-item" onclick="toggleAddon(this)">
+            <input type="checkbox" name="addons" value="Girls Backpack" data-price="40" onclick="event.stopPropagation()">
+            <span class="addon-label">Backpack<span class="addon-note">Girls</span></span>
+            <span class="addon-price">$40</span>
+          </div>
+          <div class="addon-item" onclick="toggleAddon(this)">
+            <input type="checkbox" name="addons" value="Full Tutu" data-price="10" onclick="event.stopPropagation()">
+            <span class="addon-label">Full Tutu<span class="addon-note">Girls</span></span>
+            <span class="addon-price">$10</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Boys addons -->
+      <div class="gender-section" id="boysAddons">
+        <p style="font-size:0.78rem;color:var(--text-light);margin-bottom:0.75rem;">Boys additional options</p>
+        <div class="addon-group">
+          <div class="addon-item" onclick="toggleAddon(this)">
+            <input type="checkbox" name="addons" value="Bucket Hat" data-price="20" onclick="event.stopPropagation()">
+            <span class="addon-label">Bucket Hat<span class="addon-note">Boys</span></span>
+            <span class="addon-price">$20</span>
+          </div>
+          <div class="addon-item" onclick="toggleAddon(this)">
+            <input type="checkbox" name="addons" value="Boys Backpack" data-price="40" onclick="event.stopPropagation()">
+            <span class="addon-label">Backpack<span class="addon-note">Boys</span></span>
+            <span class="addon-price">$40</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="addonPlaceholder" style="font-size:0.82rem;color:var(--text-light);font-style:italic;">Select a gender above to see add-on options.</div>
+    </div>
+
+    <!-- Parent / Guardian Items -->
+    <div class="section-card">
+      <div class="section-title">&#128083; Parent / Guardian Items</div>
+      <p style="font-size:0.82rem;color:var(--red);font-weight:700;margin-bottom:1rem;">Full payment of t-shirt and jersey is required when ordering.</p>
+      <div class="parent-options">
+
+        <div class="parent-item">
+          <div class="parent-item-header">
+            <span class="parent-item-name">Unisex T-Shirt</span>
+            <span class="parent-item-price">$22 each</span>
+          </div>
+          <div class="parent-size-row">
+            <label class="parent-qty-label" for="tshirtSize">Size</label>
+            <select id="tshirtSize" name="tshirtSize" style="flex:1;">
+              <option value="">No T-Shirt</option>
+              <option>Small</option>
+              <option>Medium</option>
+              <option>Large</option>
+              <option>XL</option>
+            </select>
+            <label class="parent-qty-label" for="tshirtQty" style="margin-left:0.5rem;">Qty</label>
+            <input type="number" id="tshirtQty" name="tshirtQty" min="0" max="10" value="0" style="width:60px;flex:none;" onchange="updateTotal()">
+          </div>
+        </div>
+
+        <div class="parent-item">
+          <div class="parent-item-header">
+            <span class="parent-item-name">Unisex Jersey</span>
+            <span class="parent-item-price">$30 each</span>
+          </div>
+          <div class="parent-size-row">
+            <label class="parent-qty-label" for="jerseySize">Size</label>
+            <select id="jerseySize" name="jerseySize" style="flex:1;">
+              <option value="">No Jersey</option>
+              <option>Small</option>
+              <option>Medium</option>
+              <option>Large</option>
+              <option>XL</option>
+            </select>
+            <label class="parent-qty-label" for="jerseyQty" style="margin-left:0.5rem;">Qty</label>
+            <input type="number" id="jerseyQty" name="jerseyQty" min="0" max="10" value="0" style="width:60px;flex:none;" onchange="updateTotal()">
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Sizing -->
+    <div class="section-card">
+      <div class="section-title">&#128207; Child Sizing</div>
+      <div class="size-grid" style="margin-bottom:1rem;">
+        <div class="field">
+          <label for="topSize">Top Size</label>
+          <select id="topSize" name="topSize" required>
+            <option value="">Select size</option>
+            <option>2T</option><option>3T</option><option>4T</option>
+            <option>XS (4-5)</option><option>S (6-7)</option>
+            <option>M (8-9)</option><option>L (10-12)</option><option>XL (14-16)</option>
+          </select>
+          <div class="error-msg" id="topSizeError">Required</div>
+        </div>
+        <div class="field">
+          <label for="bottomSize">Bottom Size</label>
+          <select id="bottomSize" name="bottomSize" required>
+            <option value="">Select size</option>
+            <option>2T</option><option>3T</option><option>4T</option>
+            <option>XS (4-5)</option><option>S (6-7)</option>
+            <option>M (8-9)</option><option>L (10-12)</option><option>XL (14-16)</option>
+          </select>
+          <div class="error-msg" id="bottomSizeError">Required</div>
+        </div>
+      </div>
+      <div class="size-grid">
+        <div class="field">
+          <label for="waistSize">Waist Size (inches)</label>
+          <input type="number" id="waistSize" name="waistSize" placeholder="e.g. 22" min="10" max="40" required>
+          <div class="error-msg" id="waistSizeError">Required</div>
+        </div>
+        <div class="field">
+          <label for="shoeSize">Shoe Size</label>
+          <input type="text" id="shoeSize" name="shoeSize" placeholder="e.g. 10C / 2Y">
+        </div>
+      </div>
+    </div>
+
+    <!-- Notes -->
+    <div class="section-card">
+      <div class="section-title">&#128221; Additional Notes</div>
+      <div class="field">
+        <label for="notes">Special requests or notes</label>
+        <textarea id="notes" name="notes" rows="3" placeholder="e.g. allergies, custom requests, questions for section leader..."></textarea>
+      </div>
+    </div>
+
+    <!-- Total -->
+    <div class="total-bar">
+      <div class="total-bar-row">
+        <span class="total-bar-label">Costume Total</span>
+        <span class="total-bar-value" id="costumeTotalDisplay">$0</span>
+      </div>
+      <div class="total-bar-row">
+        <span class="total-bar-label">Add-Ons</span>
+        <span class="total-bar-value" id="addonTotalDisplay">$0</span>
+      </div>
+      <div class="total-bar-row">
+        <span class="total-bar-label">Parent Items</span>
+        <span class="total-bar-value" id="parentTotalDisplay">$0</span>
+      </div>
+      <hr class="total-bar-divider">
+      <div class="total-bar-row">
+        <span class="total-bar-label">Estimated Total</span>
+        <span class="total-bar-value highlight" id="totalDisplay">$0</span>
+      </div>
+      <div class="total-bar-row">
+        <span class="total-bar-label">Deposit Due Now</span>
+        <span class="total-bar-value deposit-val" id="depositDisplay">$0</span>
+      </div>
+    </div>
+
+    <button type="submit" class="submit-btn">Submit Registration &#127481;&#127481;</button>
+
+    <div class="success-message" id="successMessage">
+      <div style="font-size:2.5rem;margin-bottom:1rem;">🇭🇹</div>
+      <h3>Registration Received!</h3>
+      <p>Thank you! Your registration for <strong id="successName" style="color:var(--blue);"></strong> has been submitted.<br><br>
+      Please send your deposit via e-transfer to <strong style="color:var(--blue);">4theloveofmas@gmail.com</strong> to confirm your spot.<br><br>
+      Questions? Contact Nadea Chapman at <strong style="color:var(--red);">647.880.1405</strong></p>
+    </div>
+
+  </form>
+</div>
+
+<div class="contact-bar">
+  <strong>Section Leader: Nadea Chapman</strong><br>
+  📞 647.880.1405 &nbsp;|&nbsp; ✉️ 4theloveofmas@gmail.com &nbsp;|&nbsp; 📸 @4theloveofmas2
+</div>
+
+<footer class="site-footer">
+  <p>Lil Nationz Carnival Nation &copy; 2026 &nbsp;|&nbsp; <a href="https://www.instagram.com/4theloveofmas2">@4theloveofmas2</a></p>
+</footer>
+
+<script>
+  // Gender toggles costume and addon visibility
+  document.querySelectorAll('input[name="gender"]').forEach(radio => {
+    radio.addEventListener('change', function() {
+      document.querySelectorAll('.gender-card').forEach(c => c.classList.remove('selected'));
+      this.closest('.gender-card').classList.add('selected');
+
+      const isGirl = this.value === 'Girl';
+      document.getElementById('girlsCostumes').classList.toggle('visible', isGirl);
+      document.getElementById('boysCostumes').classList.toggle('visible', !isGirl);
+      document.getElementById('girlsAddons').classList.toggle('visible', isGirl);
+      document.getElementById('boysAddons').classList.toggle('visible', !isGirl);
+      document.getElementById('addonPlaceholder').style.display = 'none';
+
+      // Clear costume selection when switching gender
+      document.querySelectorAll('input[name="costume"]').forEach(r => r.checked = false);
+      document.querySelectorAll('.costume-card').forEach(c => c.classList.remove('selected'));
+      document.querySelectorAll('input[name="addons"]').forEach(cb => {
+        cb.checked = false;
+        cb.closest('.addon-item').classList.remove('addon-selected');
+      });
+      updateTotal();
+    });
+  });
+
+  // Costume selection
+  document.querySelectorAll('.costume-card input[type="radio"]').forEach(radio => {
+    radio.addEventListener('change', function() {
+      document.querySelectorAll('.costume-card').forEach(c => c.classList.remove('selected'));
+      this.closest('.costume-card').classList.add('selected');
+      updateTotal();
+    });
+  });
+
+  // Addon toggle
+  function toggleAddon(div) {
+    const cb = div.querySelector('input[type="checkbox"]');
+    cb.checked = !cb.checked;
+    div.classList.toggle('addon-selected', cb.checked);
+    updateTotal();
+  }
+
+  // Total calculation
+  function updateTotal() {
+    let costumeTotal = 0;
+    let depositTotal = 0;
+    const selectedCostume = document.querySelector('input[name="costume"]:checked');
+    if (selectedCostume) {
+      costumeTotal = parseInt(selectedCostume.dataset.price) || 0;
+      depositTotal = parseInt(selectedCostume.dataset.deposit) || 0;
+    }
+
+    let addonTotal = 0;
+    document.querySelectorAll('input[name="addons"]:checked').forEach(cb => {
+      addonTotal += parseInt(cb.dataset.price) || 0;
+    });
+    depositTotal += addonTotal; // addons require 50% deposit too
+
+    let parentTotal = 0;
+    const tshirtQty = parseInt(document.getElementById('tshirtQty').value) || 0;
+    const jerseyQty = parseInt(document.getElementById('jerseyQty').value) || 0;
+    parentTotal += tshirtQty * 22;
+    parentTotal += jerseyQty * 30;
+
+    const grandTotal = costumeTotal + addonTotal + parentTotal;
+    const totalDeposit = Math.ceil(depositTotal * 0.5) + parentTotal; // parent items full deposit
+
+    document.getElementById('costumeTotalDisplay').textContent = '$' + costumeTotal;
+    document.getElementById('addonTotalDisplay').textContent = '$' + addonTotal;
+    document.getElementById('parentTotalDisplay').textContent = '$' + parentTotal;
+    document.getElementById('totalDisplay').textContent = '$' + grandTotal;
+    document.getElementById('depositDisplay').textContent = '$' + totalDeposit;
+  }
+
+  // Form submission
+  document.getElementById('registrationForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    let valid = true;
+
+    const required = [
+      ['firstName','firstNameError'],['lastName','lastNameError'],
+      ['age','ageError'],['parentName','parentNameError'],
+      ['phone','phoneError'],['email','emailError'],
+      ['topSize','topSizeError'],['bottomSize','bottomSizeError'],
+      ['waistSize','waistSizeError'],
+    ];
+
+    required.forEach(([fieldId, errorId]) => {
+      const field = document.getElementById(fieldId);
+      const error = document.getElementById(errorId);
+      if (!field.value.trim()) { error.style.display = 'block'; valid = false; }
+      else { error.style.display = 'none'; }
+    });
+
+    const email = document.getElementById('email').value;
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      document.getElementById('emailError').style.display = 'block'; valid = false;
+    }
+
+    const gender = document.querySelector('input[name="gender"]:checked');
+    if (!gender) { document.getElementById('genderError').style.display = 'block'; valid = false; }
+    else { document.getElementById('genderError').style.display = 'none'; }
+
+    const costume = document.querySelector('input[name="costume"]:checked');
+    if (!costume) { document.getElementById('costumeError').style.display = 'block'; valid = false; }
+    else { document.getElementById('costumeError').style.display = 'none'; }
+
+    if (!valid) return;
+
+    const addons = Array.from(document.querySelectorAll('input[name="addons"]:checked')).map(cb => cb.value);
+    const tshirtSize = document.getElementById('tshirtSize').value;
+    const tshirtQty = document.getElementById('tshirtQty').value;
+    const jerseySize = document.getElementById('jerseySize').value;
+    const jerseyQty = document.getElementById('jerseyQty').value;
+
+    const formData = {
+      firstName: document.getElementById('firstName').value,
+      lastName: document.getElementById('lastName').value,
+      age: document.getElementById('age').value,
+      gender: gender.value,
+      parentName: document.getElementById('parentName').value,
+      phone: document.getElementById('phone').value,
+      email: email,
+      costume: costume.value,
+      addons: addons.join(', ') || 'None',
+      tshirt: tshirtSize && tshirtQty > 0 ? `${tshirtSize} x${tshirtQty}` : 'None',
+      jersey: jerseySize && jerseyQty > 0 ? `${jerseySize} x${jerseyQty}` : 'None',
+      topSize: document.getElementById('topSize').value,
+      bottomSize: document.getElementById('bottomSize').value,
+      waistSize: document.getElementById('waistSize').value + '"',
+      shoeSize: document.getElementById('shoeSize').value || 'N/A',
+      notes: document.getElementById('notes').value || 'None',
+      estimatedTotal: document.getElementById('totalDisplay').textContent,
+      depositDue: document.getElementById('depositDisplay').textContent
+    };
+
+    try {
+      await fetch('https://formspree.io/f/mgoqlgry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          ...formData,
+          _subject: `Ayiti Chéri Registration - ${formData.firstName} ${formData.lastName} - ${formData.costume}`
+        })
+      });
+    } catch(err) { console.error(err); }
+
+    document.getElementById('successName').textContent = formData.firstName + ' ' + formData.lastName;
+    document.getElementById('successMessage').style.display = 'block';
+    document.getElementById('registrationForm').style.display = 'none';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
+</body>
+</html>
