@@ -32,7 +32,7 @@
 
   /* HEADER */
   header {
-    background: var(--white);
+    background: transparent;
     border-bottom: 1px solid var(--border);
     text-align: center;
     position: relative;
@@ -849,14 +849,15 @@
             </div>
           </label>
 
-          <label class="costume-card" id="card-girl-ultra">
+          <label class="costume-card" id="card-girl-ultra" style="position:relative;overflow:hidden;">
             <input type="radio" name="costume" value="Girls Ultra" data-price="0" data-deposit="0">
-            <div class="costume-info">
+            <img src="girls-ultra.jpg" alt="" aria-hidden="true" style="position:absolute;top:0;right:0;height:100%;width:55%;object-fit:cover;object-position:center top;opacity:0.30;pointer-events:none;border-radius:0 12px 12px 0;">
+            <div class="costume-info" style="position:relative;z-index:1;">
               <span class="costume-badge badge-ultra">Ultra</span>
               <span class="costume-name">Girls Ultra</span>
               <span class="costume-includes-text">Contact section leader for price and availability</span>
             </div>
-            <div class="costume-pricing">
+            <div class="costume-pricing" style="position:relative;z-index:1;">
               <span class="costume-price" style="font-size:0.85rem;color:var(--text-light);">Contact for Price</span>
             </div>
           </label>
