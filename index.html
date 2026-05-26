@@ -1015,10 +1015,10 @@
 
     <!-- Sizing -->
     <div class="section-card">
-      <div class="section-title">&#128207; Child Sizing</div>
+      <div class="section-title">&#128207; Sizing</div>
       <div class="size-grid" style="margin-bottom:1rem;">
         <div class="field">
-          <label for="topSize">Top Size</label>
+          <label for="topSize">Top &amp; Bottom Size — Child</label>
           <select id="topSize" name="topSize" required>
             <option value="">Select size</option>
             <option>2T</option><option>3T</option><option>4T</option>
@@ -1028,21 +1028,12 @@
           <div class="error-msg" id="topSizeError">Required</div>
         </div>
         <div class="field">
-          <label for="bottomSize">Bottom Size</label>
-          <select id="bottomSize" name="bottomSize" required>
-            <option value="">Select size</option>
-            <option>2T</option><option>3T</option><option>4T</option>
-            <option>XS (4-5)</option><option>S (6-7)</option>
-            <option>M (8-9)</option><option>L (10-12)</option><option>XL (14-16)</option>
+          <label for="bottomSize">Top &amp; Bottom Size — Adult</label>
+          <select id="bottomSize" name="bottomSize">
+            <option value="">Select size (if applicable)</option>
+            <option>XS</option><option>S</option><option>M</option>
+            <option>L</option><option>XL</option><option>XXL</option><option>XXXL</option>
           </select>
-          <div class="error-msg" id="bottomSizeError">Required</div>
-        </div>
-      </div>
-      <div class="size-grid full" style="grid-template-columns:1fr;">
-        <div class="field">
-          <label for="waistSize">Waist Size (inches)</label>
-          <input type="number" id="waistSize" name="waistSize" placeholder="e.g. 22" min="10" max="40" required>
-          <div class="error-msg" id="waistSizeError">Required</div>
         </div>
       </div>
     </div>
@@ -1206,7 +1197,7 @@
       ['firstName','firstNameError'],['lastName','lastNameError'],
       ['age','ageError'],['parentName','parentNameError'],
       ['phone','phoneError'],['email','emailError'],
-      ['topSize','topSizeError'],['bottomSize','bottomSizeError'],
+      ['topSize','topSizeError'],
       ['waistSize','waistSizeError'],
     ];
 
@@ -1252,8 +1243,8 @@
       addons: addons.join(', ') || 'None',
       tshirt: tshirtSize && tshirtQty > 0 ? `${tshirtSize} x${tshirtQty}` : 'None',
       jersey: jerseySize && jerseyQty > 0 ? `${jerseySize} x${jerseyQty}` : 'None',
-      topSize: document.getElementById('topSize').value,
-      bottomSize: document.getElementById('bottomSize').value,
+      childSize: document.getElementById('topSize').value,
+      adultSize: document.getElementById('bottomSize').value || 'N/A',
       waistSize: document.getElementById('waistSize').value + '"',
       notes: document.getElementById('notes').value || 'None',
       estimatedTotal: document.getElementById('totalDisplay').textContent,
