@@ -1036,15 +1036,11 @@
           <div class="error-msg" id="bottomSizeError">Required</div>
         </div>
       </div>
-      <div class="size-grid">
+      <div class="size-grid full" style="grid-template-columns:1fr;">
         <div class="field">
           <label for="waistSize">Waist Size (inches)</label>
           <input type="number" id="waistSize" name="waistSize" placeholder="e.g. 22" min="10" max="40" required>
           <div class="error-msg" id="waistSizeError">Required</div>
-        </div>
-        <div class="field">
-          <label for="shoeSize">Shoe Size</label>
-          <input type="text" id="shoeSize" name="shoeSize" placeholder="e.g. 10C / 2Y">
         </div>
       </div>
     </div>
@@ -1083,7 +1079,7 @@
       </div>
     </div>
 
-    <button type="submit" class="submit-btn">Submit Registration &#127481;&#127481;</button>
+    <button type="submit" class="submit-btn">Submit Registration &#127469;&#127481;</button>
 
     <div class="success-message" id="successMessage">
       <div style="font-size:2.5rem;margin-bottom:1rem;">🇭🇹</div>
@@ -1257,7 +1253,6 @@
       topSize: document.getElementById('topSize').value,
       bottomSize: document.getElementById('bottomSize').value,
       waistSize: document.getElementById('waistSize').value + '"',
-      shoeSize: document.getElementById('shoeSize').value || 'N/A',
       notes: document.getElementById('notes').value || 'None',
       estimatedTotal: document.getElementById('totalDisplay').textContent,
       depositDue: document.getElementById('depositDisplay').textContent
