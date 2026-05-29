@@ -1200,7 +1200,6 @@
       ['age','ageError'],['parentName','parentNameError'],
       ['phone','phoneError'],['email','emailError'],
       ['topSize','topSizeError'],
-      ['waistSize','waistSizeError'],
     ];
 
     required.forEach(([fieldId, errorId]) => {
@@ -1247,7 +1246,6 @@
       jersey: jerseySize && jerseyQty > 0 ? `${jerseySize} x${jerseyQty}` : 'None',
       childSize: document.getElementById('topSize').value,
       adultSize: document.getElementById('bottomSize').value || 'N/A',
-      waistSize: document.getElementById('waistSize').value + '"',
       notes: document.getElementById('notes').value || 'None',
       estimatedTotal: document.getElementById('totalDisplay').textContent,
       depositDue: document.getElementById('depositDisplay').textContent
