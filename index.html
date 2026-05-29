@@ -1161,18 +1161,15 @@
   // Total calculation
   function updateTotal() {
     let costumeTotal = 0;
-    let depositTotal = 0;
     const selectedCostume = document.querySelector('input[name="costume"]:checked');
     if (selectedCostume) {
       costumeTotal = parseInt(selectedCostume.dataset.price) || 0;
-      depositTotal = parseInt(selectedCostume.dataset.deposit) || 0;
     }
 
     let addonTotal = 0;
     document.querySelectorAll('input[name="addons"]:checked').forEach(cb => {
       addonTotal += parseInt(cb.dataset.price) || 0;
     });
-    depositTotal += addonTotal; // addons require 50% deposit too
 
     let parentTotal = 0;
     const tshirtQty = parseInt(document.getElementById('tshirtQty').value) || 0;
@@ -1181,7 +1178,7 @@
     parentTotal += jerseyQty * 30;
 
     const grandTotal = costumeTotal + addonTotal + parentTotal;
-    const totalDeposit = Math.ceil(depositTotal * 0.5) + parentTotal; // parent items full deposit
+    const totalDeposit = Math.ceil(grandTotal * 0.5);
 
     document.getElementById('costumeTotalDisplay').textContent = '$' + costumeTotal;
     document.getElementById('addonTotalDisplay').textContent = '$' + addonTotal;
