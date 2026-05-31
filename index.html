@@ -730,6 +730,92 @@
   }
 
   .contact-bar strong { color: var(--blue); }
+
+  /* Photo modal */
+  .photo-modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.85);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+  .photo-modal.open { display: flex; }
+  .modal-inner {
+    position: relative;
+    max-width: 480px;
+    width: 100%;
+  }
+  .modal-inner img {
+    width: 100%;
+    border-radius: 12px;
+    display: block;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+  }
+  .modal-close {
+    position: absolute;
+    top: -14px; right: -14px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px; height: 30px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    line-height: 1;
+  }
+
+  /* Addon / shirt photo wrap with View button */
+  .item-photo-wrap {
+    position: relative;
+    flex-shrink: 0;
+  }
+  .item-thumb {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+  }
+  .item-view-btn {
+    position: absolute;
+    bottom: 4px; left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.6);
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.55rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s;
+  }
+  .item-view-btn:hover { background: var(--blue); }
+
+  /* Parent item with photo */
+  .parent-item-body {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+  }
+  .parent-item-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
 </style>
 </head>
 <body>
@@ -977,7 +1063,10 @@
         <div class="addon-group">
           <div class="addon-item" onclick="toggleAddon(this)">
             <input type="checkbox" name="addons" value="Full Tutu" data-price="10" onclick="event.stopPropagation()">
-            <img src="tutu add on.jpeg" alt="Full Tutu" style="width:52px;height:52px;object-fit:contain;border-radius:6px;flex-shrink:0;background:#f5f5f5;">
+            <div class="item-photo-wrap" onclick="event.stopPropagation()">
+              <img src="tutu.jpeg" alt="Full Tutu" class="item-thumb" style="object-fit:cover;">
+              <button type="button" class="item-view-btn" onclick="openModal('tutu.jpeg')">View</button>
+            </div>
             <span class="addon-label">Full Tutu<span class="addon-note">Girls</span></span>
             <span class="addon-price">$10</span>
           </div>
@@ -1023,21 +1112,37 @@
       <div class="parent-options">
 
         <div class="parent-item">
-          <div class="parent-item-header">
-            <span class="parent-item-name">Unisex T-Shirt</span>
-            <span class="parent-item-price">$22 each</span>
+          <div class="parent-item-body">
+            <div class="item-photo-wrap">
+              <img src="parent shirt 1.jpeg" alt="Unisex T-Shirt" class="item-thumb">
+              <button type="button" class="item-view-btn" onclick="openModal('parent shirt 1.jpeg')">View</button>
+            </div>
+            <div class="parent-item-details">
+              <div class="parent-item-header" style="margin-bottom:0;">
+                <span class="parent-item-name">Unisex T-Shirt</span>
+                <span class="parent-item-price">$22 each</span>
+              </div>
+              <div id="tshirtRows" class="shirt-size-rows"></div>
+              <button type="button" class="add-size-btn" onclick="addShirtRow('tshirt')">+ Add a size</button>
+            </div>
           </div>
-          <div id="tshirtRows" class="shirt-size-rows"></div>
-          <button type="button" class="add-size-btn" onclick="addShirtRow('tshirt')">+ Add a size</button>
         </div>
 
         <div class="parent-item">
-          <div class="parent-item-header">
-            <span class="parent-item-name">Unisex Jersey</span>
-            <span class="parent-item-price">$30 each</span>
+          <div class="parent-item-body">
+            <div class="item-photo-wrap">
+              <img src="parent shirt 2.jpeg" alt="Unisex Jersey" class="item-thumb">
+              <button type="button" class="item-view-btn" onclick="openModal('parent shirt 2.jpeg')">View</button>
+            </div>
+            <div class="parent-item-details">
+              <div class="parent-item-header" style="margin-bottom:0;">
+                <span class="parent-item-name">Unisex Jersey</span>
+                <span class="parent-item-price">$30 each</span>
+              </div>
+              <div id="jerseyRows" class="shirt-size-rows"></div>
+              <button type="button" class="add-size-btn" onclick="addShirtRow('jersey')">+ Add a size</button>
+            </div>
           </div>
-          <div id="jerseyRows" class="shirt-size-rows"></div>
-          <button type="button" class="add-size-btn" onclick="addShirtRow('jersey')">+ Add a size</button>
         </div>
 
       </div>
@@ -1373,6 +1478,29 @@
     document.getElementById('registrationForm').style.display = 'none';
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
+
+  function openModal(src) {
+    document.getElementById('modalImg').src = src;
+    document.getElementById('photoModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('photoModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+  });
 </script>
+
+<div id="photoModal" class="photo-modal" onclick="closeModal()">
+  <div class="modal-inner" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <img id="modalImg" src="" alt="Photo">
+  </div>
+</div>
+
 </body>
 </html>
