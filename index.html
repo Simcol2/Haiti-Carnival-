@@ -891,6 +891,221 @@
     flex-direction: column;
     gap: 0.4rem;
   }
+
+  /* ── Multi-masquerader ── */
+  .masq-count-card {
+    background: linear-gradient(135deg, #f0f4ff, #e8eeff);
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    padding: 1.1rem 1.5rem;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .masq-count-label { font-weight: 700; font-size: 0.92rem; color: var(--blue); }
+  .masq-count-sel {
+    border: 1.5px solid var(--blue);
+    border-radius: 8px;
+    padding: 0.55rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--blue);
+    background: white;
+    cursor: pointer;
+    min-width: 80px;
+  }
+
+  .masq-section { margin-bottom: 0.5rem; }
+  .masq-divider {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem 0;
+    border-bottom: 2px solid var(--border);
+  }
+  .masq-num-badge {
+    background: var(--blue);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+  .masq-name-chip {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--blue);
+    font-family: 'Playfair Display', serif;
+  }
+
+  /* ── Review Modal ── */
+  .review-modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.75);
+    z-index: 3000;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    overflow-y: auto;
+  }
+  .review-modal.open { display: flex; }
+  .review-container {
+    background: white;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 520px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 12px 50px rgba(0,0,0,0.4);
+    overflow: hidden;
+  }
+  .review-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem 1.4rem;
+    background: var(--blue);
+    color: white;
+    flex-shrink: 0;
+  }
+  .review-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+  }
+  .review-close {
+    background: rgba(255,255,255,0.15);
+    border: none;
+    color: white;
+    border-radius: 50%;
+    width: 28px; height: 28px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .review-body {
+    overflow-y: auto;
+    padding: 1.25rem 1.4rem;
+    flex: 1;
+  }
+  .review-intro {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    padding: 0.75rem 1rem;
+    background: #f8f9ff;
+    border-radius: 8px;
+    border-left: 3px solid var(--blue);
+  }
+  .review-masq-block {
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 0.85rem;
+    overflow: hidden;
+  }
+  .review-masq-header {
+    background: var(--blue);
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 0.55rem 1rem;
+  }
+  .review-masq-body { padding: 0.75rem 1rem; }
+  .review-shared-block {
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 0.85rem;
+    overflow: hidden;
+  }
+  .review-shared-title {
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-light);
+    padding: 0.5rem 1rem;
+    background: #f8f9ff;
+    border-bottom: 1px solid var(--border);
+  }
+  .review-shared-block .review-masq-body { padding: 0.75rem 1rem; }
+  .review-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.75rem;
+    padding: 0.3rem 0;
+    border-bottom: 1px solid #f0f2ff;
+    font-size: 0.82rem;
+  }
+  .review-row:last-child { border-bottom: none; }
+  .review-row-label {
+    color: var(--text-light);
+    font-weight: 600;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .review-row-value { color: var(--text); font-weight: 700; text-align: right; }
+  .review-total-block {
+    background: var(--blue);
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+    margin-top: 0.5rem;
+  }
+  .review-total-row {
+    display: flex;
+    justify-content: space-between;
+    color: rgba(255,255,255,0.8);
+    font-size: 0.82rem;
+    font-weight: 700;
+    padding: 0.3rem 0;
+  }
+  .review-total-row.big { color: #7ee87a; font-size: 1rem; padding-top: 0.6rem; margin-top: 0.3rem; border-top: 1px solid rgba(255,255,255,0.15); }
+  .review-footer {
+    display: flex;
+    gap: 0.75rem;
+    padding: 1rem 1.4rem;
+    background: #f8f9ff;
+    border-top: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+  .review-edit-btn {
+    flex: 1;
+    background: white;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    padding: 0.75rem;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--text-light);
+    cursor: pointer;
+  }
+  .review-submit-btn {
+    flex: 2;
+    background: var(--red);
+    border: none;
+    border-radius: 8px;
+    padding: 0.75rem;
+    font-weight: 800;
+    font-size: 0.85rem;
+    color: white;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+  }
+  .review-submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
 </style>
 </head>
 <body>
@@ -928,44 +1143,17 @@
 
   <form id="registrationForm" novalidate>
 
-    <!-- Personal Info -->
-    <div class="section-card">
-      <div class="section-title">⚽ Masquerader Information</div>
-      <div class="field-group" style="margin-bottom:1rem;">
-        <div class="field">
-          <label for="firstName">First Name</label>
-          <input type="text" id="firstName" name="firstName" placeholder="First name" required>
-          <div class="error-msg" id="firstNameError">Required</div>
-        </div>
-        <div class="field">
-          <label for="lastName">Last Name</label>
-          <input type="text" id="lastName" name="lastName" placeholder="Last name" required>
-          <div class="error-msg" id="lastNameError">Required</div>
-        </div>
-      </div>
-      <div class="field-group">
-        <div class="field">
-          <label for="age">Age</label>
-          <input type="number" id="age" name="age" placeholder="Age" min="1" max="17" required>
-          <div class="error-msg" id="ageError">Required</div>
-        </div>
-        <div class="field">
-          <label>Gender</label>
-          <div class="gender-options">
-            <label class="gender-card" id="genderGirl">
-              <input type="radio" name="gender" value="Girl" required>
-              Girl
-            </label>
-            <label class="gender-card" id="genderBoy">
-              <input type="radio" name="gender" value="Boy">
-              Boy
-            </label>
-          </div>
-          <div class="error-msg" id="genderError">Required</div>
-          <p style="font-size:0.75rem;color:var(--text-light);margin-top:0.5rem;font-style:italic;">Please select a gender to see available costume options below.</p>
-        </div>
-      </div>
+    <!-- How many masqueraders -->
+    <div class="masq-count-card">
+      <span class="masq-count-label">How many masqueraders are you registering?</span>
+      <select class="masq-count-sel" id="masqCount" onchange="buildMasqueraderSections(this.value)">
+        <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+        <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+      </select>
     </div>
+
+    <!-- Dynamic masquerader sections -->
+    <div id="masqueraderSections"></div>
 
     <!-- Contact -->
     <div class="section-card">
@@ -1010,194 +1198,15 @@
       </div>
     </div>
 
-    <!-- Costume Selection -->
-    <div class="section-card">
-      <div class="section-title">&#127914; Costume Selection</div>
-      <p style="font-size:0.82rem;color:var(--text-light);margin-bottom:1rem;">Select a gender above first to see available costumes.</p>
-
-      <!-- GIRLS -->
-      <div class="gender-section" id="girlsCostumes">
-        <div class="gender-label-header">Girls Costumes</div>
-        <div class="costume-options">
-          <label class="costume-card" id="card-girl-back">
-            <input type="radio" name="costume" value="Girls Backline" data-price="150" data-deposit="80">
-            
-            <div style="width:90px;height:90px;flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid var(--border);">
-              <img src="bacline%20girl.jpeg" alt="Girls Backline" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
-            </div>
-            <div class="costume-info">
-              <span class="costume-badge badge-back">Backline</span>
-              <span class="costume-name">Girls Backline</span>
-              <span class="costume-includes-text">headband, neckband, decorated top and shorts, belt with back tutu, arms and leg bands, small feather collar</span>
-            </div>
-            <div class="costume-pricing">
-              <span class="costume-price">$150</span>
-              <span class="costume-deposit">$80 deposit</span>
-            </div>
-          </label>
-
-          <label class="costume-card" id="card-girl-mid">
-            <input type="radio" name="costume" value="Girls Midline" data-price="220" data-deposit="110">
-            
-            <div style="width:90px;height:90px;flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid var(--border);">
-              <img src="midline%20haiti%20girl.jpeg" alt="Girls Midline" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
-            </div>
-            <div class="costume-info">
-              <span class="costume-badge badge-mid">Midline</span>
-              <span class="costume-name">Girls Midline</span>
-              <span class="costume-includes-text">tiara, neckband, decorated top and shorts, belt with full tutu skirt, arms and leg bands, medium feathered backpack</span>
-            </div>
-            <div class="costume-pricing">
-              <span class="costume-price">$220</span>
-              <span class="costume-deposit">$110 deposit</span>
-            </div>
-          </label>
-
-          <label class="costume-card" id="card-girl-front">
-            <input type="radio" name="costume" value="Girls Frontline" data-price="360" data-deposit="180">
-
-            <div style="width:90px;height:90px;flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid var(--border);">
-              <img src="haiti frontline girls.jpg" alt="Girls Frontline" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
-            </div>
-            <div class="costume-info">
-              <span class="costume-badge badge-front">Frontline</span>
-              <span class="costume-name">Girls Frontline</span>
-              <span class="costume-includes-text">tiara, neckband, sleeves and bracelets, decorated top and shorts, belt with layered skirt, leg bands, large feathered backpack</span>
-            </div>
-            <div class="costume-pricing">
-              <span class="costume-price">$360</span>
-              <span class="costume-deposit">$180 deposit</span>
-            </div>
-          </label>
-
-          <label class="costume-card" id="card-girl-ultra" style="position:relative;overflow:hidden;">
-            <input type="radio" name="costume" value="Girls Ultra" data-price="0" data-deposit="0">
-            <img src="girls-ultra.jpeg" alt="" aria-hidden="true" style="position:absolute;top:0;right:0;height:100%;width:55%;object-fit:cover;object-position:center top;opacity:0.30;pointer-events:none;border-radius:0 12px 12px 0;">
-            <div class="costume-info" style="position:relative;z-index:1;">
-              <span class="costume-badge badge-ultra">Ultra</span>
-              <span class="costume-name">Girls Ultra</span>
-              <span class="costume-includes-text">Contact section leader for price and availability</span>
-            </div>
-            <div class="costume-pricing" style="position:relative;z-index:1;">
-              <span class="costume-price" style="font-size:0.85rem;color:var(--text-light);">Contact for Price</span>
-            </div>
-          </label>
-        </div>
-      </div>
-
-      <!-- BOYS -->
-      <div class="gender-section" id="boysCostumes">
-        <div class="gender-label-header">Boys Costumes</div>
-        <div class="costume-options">
-          <label class="costume-card" id="card-boy-back">
-            <input type="radio" name="costume" value="Boys Backline" data-price="150" data-deposit="80">
-            
-            <div style="width:90px;height:90px;flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid var(--border);">
-              <img src="backline%20boy.jpeg" alt="Boys Backline" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
-            </div>
-            <div class="costume-info">
-              <span class="costume-badge badge-back">Backline</span>
-              <span class="costume-name">Boys Backline</span>
-              <span class="costume-includes-text">headband, decorated chest piece, jersey and shorts, belt, arm and leg bands</span>
-            </div>
-            <div class="costume-pricing">
-              <span class="costume-price">$150</span>
-              <span class="costume-deposit">$80 deposit</span>
-            </div>
-          </label>
-
-          <label class="costume-card" id="card-boy-front">
-            <input type="radio" name="costume" value="Boys Frontline" data-price="200" data-deposit="100">
-            
-            <div style="width:90px;height:90px;flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid var(--border);">
-              <img src="frontline%20boys.jpeg" alt="Boys Frontline" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
-            </div>
-            <div class="costume-info">
-              <span class="costume-badge badge-front">Frontline</span>
-              <span class="costume-name">Boys Frontline</span>
-              <span class="costume-includes-text">Feathered mohawk headdress, decorated chest piece, jersey and shorts, belt, arm and leg bands, large feathered backpack</span>
-            </div>
-            <div class="costume-pricing">
-              <span class="costume-price">$200</span>
-              <span class="costume-deposit">$100 deposit</span>
-            </div>
-          </label>
-        </div>
-      </div>
-
-      <div class="error-msg" id="costumeError" style="margin-top:0.5rem;">Please select a costume</div>
-    </div>
-
-    <!-- Add-On Carousel -->
+    <!-- Add-On Gallery (shared viewing carousel) -->
     <div class="section-card" style="padding-bottom:1.5rem;">
       <div class="section-title">🖼️ Add-On Gallery</div>
-
-      <!-- Main 3-up display -->
       <div class="carousel-viewport">
         <button class="carousel-arrow carousel-prev" onclick="carouselStep(-1)" aria-label="Previous">&#8249;</button>
         <div class="carousel-stage" id="carouselStage"></div>
         <button class="carousel-arrow carousel-next" onclick="carouselStep(1)" aria-label="Next">&#8250;</button>
       </div>
-
-      <!-- Thumbnail strip -->
       <div class="carousel-thumbs" id="carouselThumbs"></div>
-    </div>
-
-    <!-- Add Ons -->
-    <div class="section-card">
-      <div class="section-title">&#10024; Add-Ons</div>
-
-      <!-- Girls addons -->
-      <div class="gender-section" id="girlsAddons">
-        <p style="font-size:0.78rem;color:var(--text-light);margin-bottom:0.75rem;">Girls additional options</p>
-        <div class="addon-group">
-          <div class="addon-item" onclick="toggleAddon(this)">
-            <input type="checkbox" name="addons" value="Full Tutu" data-price="10" onclick="event.stopPropagation()">
-            <div class="item-photo-wrap" onclick="event.stopPropagation()">
-              <img src="tutu.jpeg" alt="Full Tutu" class="item-thumb" style="object-fit:cover;">
-              <button type="button" class="item-view-btn" onclick="openModal('tutu.jpeg')">View</button>
-            </div>
-            <span class="addon-label">Full Tutu<span class="addon-note">Girls</span></span>
-            <span class="addon-price">$10</span>
-          </div>
-          <div class="addon-item" onclick="toggleAddon(this)">
-            <input type="checkbox" name="addons" value="Full Collar" data-price="20" onclick="event.stopPropagation()">
-            <div class="item-photo-wrap" onclick="event.stopPropagation()">
-              <img src="full collar.jpeg" alt="Full Collar" class="item-thumb" style="object-fit:cover;">
-              <button type="button" class="item-view-btn" onclick="openModal('full collar.jpeg')">View</button>
-            </div>
-            <span class="addon-label">Full Collar<span class="addon-note">Girls</span></span>
-            <span class="addon-price">$20</span>
-          </div>
-          <div class="addon-item" onclick="toggleAddon(this)">
-            <input type="checkbox" name="addons" value="Girls Backpack" data-price="40" onclick="event.stopPropagation()">
-            <img src="small bacpac add on.jpg" alt="Small Backpack" style="width:52px;height:52px;object-fit:contain;border-radius:6px;flex-shrink:0;background:#f5f5f5;">
-            <span class="addon-label">Backpack<span class="addon-note">Girls</span></span>
-            <span class="addon-price">$40</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Boys addons -->
-      <div class="gender-section" id="boysAddons">
-        <p style="font-size:0.78rem;color:var(--text-light);margin-bottom:0.75rem;">Boys additional options</p>
-        <div class="addon-group">
-          <div class="addon-item" onclick="toggleAddon(this)">
-            <input type="checkbox" name="addons" value="Bucket Hat" data-price="20" onclick="event.stopPropagation()">
-            <img src="boys-addon-face.jpg" alt="Bucket Hat" style="width:52px;height:52px;object-fit:cover;object-position:center top;border-radius:6px;flex-shrink:0;background:#f5f5f5;">
-            <span class="addon-label">Bucket Hat<span class="addon-note">Boys</span></span>
-            <span class="addon-price">$20</span>
-          </div>
-          <div class="addon-item" onclick="toggleAddon(this)">
-            <input type="checkbox" name="addons" value="Boys Backpack" data-price="40" onclick="event.stopPropagation()">
-            <img src="boys-addon-face.jpg" alt="Boys Backpack" style="width:52px;height:52px;object-fit:cover;object-position:center top;border-radius:6px;flex-shrink:0;background:#f5f5f5;">
-            <span class="addon-label">Backpack<span class="addon-note">Boys</span></span>
-            <span class="addon-price">$40</span>
-          </div>
-        </div>
-      </div>
-
-      <div id="addonPlaceholder" style="font-size:0.82rem;color:var(--text-light);font-style:italic;">Select a gender above to see add-on options.</div>
     </div>
 
     <!-- Parent / Guardian Items -->
@@ -1214,7 +1223,7 @@
             <div class="parent-item-details">
               <div class="parent-item-header" style="margin-bottom:0;">
                 <span class="parent-item-name">Unisex T-Shirt</span>
-                <span class="parent-item-price">$22 each</span>
+                <span class="parent-item-price">$25 each</span>
               </div>
               <div id="tshirtRows" class="shirt-size-rows"></div>
               <button type="button" class="add-size-btn" onclick="addShirtRow('tshirt')">+ Add a size</button>
@@ -1231,7 +1240,7 @@
             <div class="parent-item-details">
               <div class="parent-item-header" style="margin-bottom:0;">
                 <span class="parent-item-name">Unisex Jersey</span>
-                <span class="parent-item-price">$30 each</span>
+                <span class="parent-item-price">$35 each</span>
               </div>
               <div id="jerseyRows" class="shirt-size-rows"></div>
               <button type="button" class="add-size-btn" onclick="addShirtRow('jersey')">+ Add a size</button>
@@ -1239,33 +1248,6 @@
           </div>
         </div>
 
-      </div>
-    </div>
-
-    <!-- Sizing -->
-    <div class="section-card">
-      <div class="section-title">&#128207; Sizing</div>
-      <div class="size-grid" style="margin-bottom:1rem;">
-        <div class="field">
-          <label for="topSize">Top &amp; Bottom Size — Child</label>
-          <select id="topSize" name="topSize" required>
-            <option value="">Select size</option>
-            <option>Baby</option>
-            <option>2T</option><option>3T</option><option>4T</option>
-            <option>XS (4-5)</option><option>S (6-7)</option>
-            <option>M (8-9)</option><option>L (10-12)</option><option>XL (14-16)</option>
-          </select>
-          <div class="error-msg" id="topSizeError">Required</div>
-          <p style="font-size:0.72rem;color:var(--text-light);margin-top:0.4rem;line-height:1.5;">** For baby sizes please add exact size in the notes section</p>
-        </div>
-        <div class="field">
-          <label for="bottomSize">Top &amp; Bottom Size — Adult</label>
-          <select id="bottomSize" name="bottomSize">
-            <option value="">Select size (if applicable)</option>
-            <option>XS</option><option>S</option><option>M</option>
-            <option>L</option><option>XL</option><option>XXL</option><option>XXXL</option>
-          </select>
-        </div>
       </div>
     </div>
 
@@ -1303,7 +1285,7 @@
       </div>
     </div>
 
-    <button type="submit" class="submit-btn">Submit Registration &#127469;&#127481;</button>
+    <button type="button" class="submit-btn" onclick="openReviewModal_H()">Submit Registration &#127469;&#127481;</button>
 
     <div class="success-message" id="successMessage">
       <div style="font-size:2.5rem;margin-bottom:1rem;">🇭🇹</div>
@@ -1322,6 +1304,21 @@
     </div>
 
   </form>
+</div>
+
+<!-- Review Modal -->
+<div id="reviewModal" class="review-modal">
+  <div class="review-container">
+    <div class="review-header">
+      <span class="review-title">Review Your Registration</span>
+      <button type="button" class="review-close" onclick="closeReviewModal_H()">✕</button>
+    </div>
+    <div class="review-body" id="reviewBody"></div>
+    <div class="review-footer">
+      <button type="button" class="review-edit-btn" onclick="closeReviewModal_H()">Edit</button>
+      <button type="button" class="review-submit-btn" id="reviewSubmitBtn" onclick="confirmSubmit_H()">Confirm &amp; Submit</button>
+    </div>
+  </div>
 </div>
 
 <div class="contact-bar" style="padding:1.5rem 1rem;">
@@ -1354,64 +1351,249 @@
 </footer>
 
 <script>
-  // Gender toggles costume and addon visibility
-  document.querySelectorAll('input[name="gender"]').forEach(radio => {
-    radio.addEventListener('change', function() {
-      document.querySelectorAll('.gender-card').forEach(c => c.classList.remove('selected'));
-      this.closest('.gender-card').classList.add('selected');
+  // ── Multi-masquerader ─────────────────────────────────────────────────────
+  var MASQ_COUNT = 1;
 
-      const isGirl = this.value === 'Girl';
-      document.getElementById('girlsCostumes').classList.toggle('visible', isGirl);
-      document.getElementById('boysCostumes').classList.toggle('visible', !isGirl);
-      document.getElementById('girlsAddons').classList.toggle('visible', isGirl);
-      document.getElementById('boysAddons').classList.toggle('visible', !isGirl);
-      document.getElementById('addonPlaceholder').style.display = 'none';
+  function haitiMasqSectionHTML(i) {
+    var sizeOpts = ['Baby','2T','3T','4T','XS (4-5)','S (6-7)','M (8-9)','L (10-12)','XL (14-16)'].map(function(s){
+      return '<option>'+s+'</option>';
+    }).join('');
 
-      // Clear costume selection when switching gender
-      document.querySelectorAll('input[name="costume"]').forEach(r => r.checked = false);
-      document.querySelectorAll('.costume-card').forEach(c => c.classList.remove('selected'));
-      document.querySelectorAll('input[name="addons"]').forEach(cb => {
-        cb.checked = false;
-        cb.closest('.addon-item').classList.remove('addon-selected');
-      });
-      updateTotal();
+    var girlsAddonHTML =
+      '<div class="addon-item" onclick="toggleAddon_H(this,'+i+')">' +
+        '<input type="checkbox" name="h'+i+'_addons" value="Full Tutu" data-price="10" onclick="event.stopPropagation()">' +
+        '<div class="item-photo-wrap" onclick="event.stopPropagation()"><img src="tutu.jpeg" alt="Full Tutu" class="item-thumb" style="object-fit:cover;"><button type="button" class="item-view-btn" onclick="openModal(\'tutu.jpeg\')">View</button></div>' +
+        '<span class="addon-label">Full Tutu<span class="addon-note">Girls</span></span>' +
+        '<span class="addon-price">$10</span>' +
+      '</div>' +
+      '<div class="addon-item" onclick="toggleAddon_H(this,'+i+')">' +
+        '<input type="checkbox" name="h'+i+'_addons" value="Full Collar" data-price="20" onclick="event.stopPropagation()">' +
+        '<div class="item-photo-wrap" onclick="event.stopPropagation()"><img src="full collar.jpeg" alt="Full Collar" class="item-thumb" style="object-fit:cover;"><button type="button" class="item-view-btn" onclick="openModal(\'full collar.jpeg\')">View</button></div>' +
+        '<span class="addon-label">Full Collar<span class="addon-note">Girls</span></span>' +
+        '<span class="addon-price">$20</span>' +
+      '</div>' +
+      '<div class="addon-item" onclick="toggleAddon_H(this,'+i+')">' +
+        '<input type="checkbox" name="h'+i+'_addons" value="Girls Backpack" data-price="40" onclick="event.stopPropagation()">' +
+        '<img src="small bacpac add on.jpg" alt="Small Backpack" style="width:52px;height:52px;object-fit:contain;border-radius:6px;flex-shrink:0;background:#f5f5f5;">' +
+        '<span class="addon-label">Backpack<span class="addon-note">Girls</span></span>' +
+        '<span class="addon-price">$40</span>' +
+      '</div>';
+
+    var boysAddonHTML =
+      '<div class="addon-item" onclick="toggleAddon_H(this,'+i+')">' +
+        '<input type="checkbox" name="h'+i+'_addons" value="Bucket Hat" data-price="20" onclick="event.stopPropagation()">' +
+        '<img src="boys-addon-face.jpg" alt="Bucket Hat" style="width:52px;height:52px;object-fit:cover;object-position:center top;border-radius:6px;flex-shrink:0;background:#f5f5f5;">' +
+        '<span class="addon-label">Bucket Hat<span class="addon-note">Boys</span></span>' +
+        '<span class="addon-price">$20</span>' +
+      '</div>' +
+      '<div class="addon-item" onclick="toggleAddon_H(this,'+i+')">' +
+        '<input type="checkbox" name="h'+i+'_addons" value="Boys Backpack" data-price="40" onclick="event.stopPropagation()">' +
+        '<img src="boys add on.jpg" alt="Boys Backpack" style="width:52px;height:52px;object-fit:cover;object-position:center top;border-radius:6px;flex-shrink:0;background:#f5f5f5;">' +
+        '<span class="addon-label">Backpack<span class="addon-note">Boys</span></span>' +
+        '<span class="addon-price">$40</span>' +
+      '</div>';
+
+    return `
+<div class="masq-section" id="haitiMasqSection_${i}">
+  <div class="masq-divider">
+    <span class="masq-num-badge">Masquerader ${i}</span>
+    <span class="masq-name-chip" id="haitiMasqLabel_${i}"></span>
+  </div>
+
+  <div class="section-card">
+    <div class="section-title">&#9917; Masquerader ${i} Information</div>
+    <div class="field-group" style="margin-bottom:1rem;">
+      <div class="field">
+        <label>First Name</label>
+        <input type="text" id="h${i}_firstName" placeholder="First name" required oninput="updateMasqLabel_H(${i})">
+        <div class="error-msg" id="h${i}_firstNameError">Required</div>
+      </div>
+      <div class="field">
+        <label>Last Name</label>
+        <input type="text" id="h${i}_lastName" placeholder="Last name" required oninput="updateMasqLabel_H(${i})">
+        <div class="error-msg" id="h${i}_lastNameError">Required</div>
+      </div>
+    </div>
+    <div class="field-group">
+      <div class="field">
+        <label>Age</label>
+        <input type="number" id="h${i}_age" placeholder="Age" min="1" max="17" required>
+        <div class="error-msg" id="h${i}_ageError">Required</div>
+      </div>
+      <div class="field">
+        <label>Gender</label>
+        <div class="gender-options">
+          <label class="gender-card"><input type="radio" name="h${i}_gender" value="Girl" required onchange="onGenderChange_H(${i})"> Girl</label>
+          <label class="gender-card"><input type="radio" name="h${i}_gender" value="Boy" onchange="onGenderChange_H(${i})"> Boy</label>
+        </div>
+        <div class="error-msg" id="h${i}_genderError">Required</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-title">&#127914; Costume Selection</div>
+    <div id="h${i}_costumePrompt" style="font-size:0.82rem;color:var(--text-light);font-style:italic;margin-bottom:0.75rem;">Select a gender above to see costume options.</div>
+
+    <div id="h${i}_girlsCostumes" style="display:none;">
+      <div class="gender-label-header">Girls Costumes</div>
+      <div class="costume-options">
+        <label class="costume-card">
+          <input type="radio" name="h${i}_costume" value="Girls Backline" data-price="150" onchange="onCostumeChange_H(${i})">
+          <div style="width:90px;height:90px;flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid var(--border);"><img src="bacline girl.jpeg" alt="Girls Backline" style="width:100%;height:100%;object-fit:cover;object-position:center top;"></div>
+          <div class="costume-info"><span class="costume-badge badge-back">Backline</span><span class="costume-name">Girls Backline</span><span class="costume-includes-text">headband, neckband, decorated top and shorts, belt with back tutu, arms and leg bands, small feather collar</span></div>
+          <div class="costume-pricing"><span class="costume-price">$150</span><span class="costume-deposit">$75 deposit</span></div>
+        </label>
+        <label class="costume-card">
+          <input type="radio" name="h${i}_costume" value="Girls Midline" data-price="220" onchange="onCostumeChange_H(${i})">
+          <div style="width:90px;height:90px;flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid var(--border);"><img src="midline haiti girl.jpeg" alt="Girls Midline" style="width:100%;height:100%;object-fit:cover;object-position:center top;"></div>
+          <div class="costume-info"><span class="costume-badge badge-mid">Midline</span><span class="costume-name">Girls Midline</span><span class="costume-includes-text">tiara, neckband, decorated top and shorts, belt with full tutu skirt, arms and leg bands, medium feathered backpack</span></div>
+          <div class="costume-pricing"><span class="costume-price">$220</span><span class="costume-deposit">$110 deposit</span></div>
+        </label>
+        <label class="costume-card">
+          <input type="radio" name="h${i}_costume" value="Girls Frontline" data-price="360" onchange="onCostumeChange_H(${i})">
+          <div style="width:90px;height:90px;flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid var(--border);"><img src="haiti frontline girls.jpg" alt="Girls Frontline" style="width:100%;height:100%;object-fit:cover;object-position:center top;"></div>
+          <div class="costume-info"><span class="costume-badge badge-front">Frontline</span><span class="costume-name">Girls Frontline</span><span class="costume-includes-text">tiara, neckband, sleeves and bracelets, decorated top and shorts, belt with layered skirt, leg bands, large feathered backpack</span></div>
+          <div class="costume-pricing"><span class="costume-price">$360</span><span class="costume-deposit">$180 deposit</span></div>
+        </label>
+        <label class="costume-card" style="position:relative;overflow:hidden;">
+          <input type="radio" name="h${i}_costume" value="Girls Ultra" data-price="0" onchange="onCostumeChange_H(${i})">
+          <img src="girls-ultra.jpeg" alt="" aria-hidden="true" style="position:absolute;top:0;right:0;height:100%;width:55%;object-fit:cover;object-position:center top;opacity:0.30;pointer-events:none;border-radius:0 12px 12px 0;">
+          <div class="costume-info" style="position:relative;z-index:1;"><span class="costume-badge badge-ultra">Ultra</span><span class="costume-name">Girls Ultra</span><span class="costume-includes-text">Contact section leader for price and availability</span></div>
+          <div class="costume-pricing" style="position:relative;z-index:1;"><span class="costume-price" style="font-size:0.85rem;color:var(--text-light);">Contact for Price</span></div>
+        </label>
+      </div>
+    </div>
+
+    <div id="h${i}_boysCostumes" style="display:none;">
+      <div class="gender-label-header">Boys Costumes</div>
+      <div class="costume-options">
+        <label class="costume-card">
+          <input type="radio" name="h${i}_costume" value="Boys Backline" data-price="150" onchange="onCostumeChange_H(${i})">
+          <div style="width:90px;height:90px;flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid var(--border);"><img src="backline boy.jpeg" alt="Boys Backline" style="width:100%;height:100%;object-fit:cover;object-position:center top;"></div>
+          <div class="costume-info"><span class="costume-badge badge-back">Backline</span><span class="costume-name">Boys Backline</span><span class="costume-includes-text">headband, decorated chest piece, jersey and shorts, belt, arm and leg bands</span></div>
+          <div class="costume-pricing"><span class="costume-price">$150</span><span class="costume-deposit">$75 deposit</span></div>
+        </label>
+        <label class="costume-card">
+          <input type="radio" name="h${i}_costume" value="Boys Frontline" data-price="200" onchange="onCostumeChange_H(${i})">
+          <div style="width:90px;height:90px;flex-shrink:0;border-radius:6px;overflow:hidden;border:1px solid var(--border);"><img src="frontline boys.jpeg" alt="Boys Frontline" style="width:100%;height:100%;object-fit:cover;object-position:center top;"></div>
+          <div class="costume-info"><span class="costume-badge badge-front">Frontline</span><span class="costume-name">Boys Frontline</span><span class="costume-includes-text">Feathered mohawk headdress, decorated chest piece, jersey and shorts, belt, arm and leg bands, large feathered backpack</span></div>
+          <div class="costume-pricing"><span class="costume-price">$200</span><span class="costume-deposit">$100 deposit</span></div>
+        </label>
+      </div>
+    </div>
+
+    <div class="error-msg" id="h${i}_costumeError" style="margin-top:0.5rem;">Please select a costume</div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-title">&#10024; Add-Ons</div>
+    <div id="h${i}_addonsPrompt" style="font-size:0.82rem;color:var(--text-light);font-style:italic;">Select a gender above to see add-on options.</div>
+    <div id="h${i}_girlsAddons" style="display:none;">
+      <p style="font-size:0.78rem;color:var(--text-light);margin-bottom:0.75rem;">Girls additional options</p>
+      <div class="addon-group">${girlsAddonHTML}</div>
+    </div>
+    <div id="h${i}_boysAddons" style="display:none;">
+      <p style="font-size:0.78rem;color:var(--text-light);margin-bottom:0.75rem;">Boys additional options</p>
+      <div class="addon-group">${boysAddonHTML}</div>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-title">&#128207; Sizing — Masquerader ${i}</div>
+    <div class="size-grid" style="margin-bottom:1rem;">
+      <div class="field">
+        <label>Top &amp; Bottom Size — Child</label>
+        <select id="h${i}_topSize" required>
+          <option value="">Select size</option>${sizeOpts}
+        </select>
+        <div class="error-msg" id="h${i}_topSizeError">Required</div>
+        <p style="font-size:0.72rem;color:var(--text-light);margin-top:0.4rem;line-height:1.5;">** For baby sizes add exact size in notes</p>
+      </div>
+      <div class="field">
+        <label>Top &amp; Bottom Size — Adult</label>
+        <select id="h${i}_bottomSize">
+          <option value="">Select size (if applicable)</option>
+          <option>XS</option><option>S</option><option>M</option>
+          <option>L</option><option>XL</option><option>XXL</option><option>XXXL</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+</div>`;
+  }
+
+  function buildMasqueraderSections(n) {
+    MASQ_COUNT = parseInt(n) || 1;
+    var container = document.getElementById('masqueraderSections');
+    container.innerHTML = '';
+    for (var i = 1; i <= MASQ_COUNT; i++) {
+      container.insertAdjacentHTML('beforeend', haitiMasqSectionHTML(i));
+    }
+    updateTotal();
+  }
+
+  function updateMasqLabel_H(i) {
+    var fn = document.getElementById('h'+i+'_firstName')?.value || '';
+    var ln = document.getElementById('h'+i+'_lastName')?.value || '';
+    var chip = document.getElementById('haitiMasqLabel_'+i);
+    if (chip) chip.textContent = fn ? (fn + (ln ? ' '+ln : '')) : '';
+  }
+
+  function onGenderChange_H(i) {
+    var r = document.querySelector('input[name="h'+i+'_gender"]:checked');
+    if (!r) return;
+    var isGirl = r.value === 'Girl';
+
+    document.querySelectorAll('#haitiMasqSection_'+i+' .gender-card').forEach(function(c){ c.classList.remove('selected'); });
+    r.closest('.gender-card').classList.add('selected');
+
+    document.getElementById('h'+i+'_girlsCostumes').style.display = isGirl ? 'block' : 'none';
+    document.getElementById('h'+i+'_boysCostumes').style.display  = isGirl ? 'none'  : 'block';
+    document.getElementById('h'+i+'_costumePrompt').style.display = 'none';
+    document.getElementById('h'+i+'_girlsAddons').style.display   = isGirl ? 'block' : 'none';
+    document.getElementById('h'+i+'_boysAddons').style.display    = isGirl ? 'none'  : 'block';
+    document.getElementById('h'+i+'_addonsPrompt').style.display  = 'none';
+
+    document.querySelectorAll('input[name="h'+i+'_costume"]').forEach(function(r2){ r2.checked=false; });
+    document.querySelectorAll('#haitiMasqSection_'+i+' .costume-card').forEach(function(c){ c.classList.remove('selected'); });
+    document.querySelectorAll('input[name="h'+i+'_addons"]').forEach(function(cb){
+      cb.checked=false; cb.closest('.addon-item').classList.remove('addon-selected');
     });
-  });
+    updateTotal();
+  }
 
-  // Costume selection
-  document.querySelectorAll('.costume-card input[type="radio"]').forEach(radio => {
-    radio.addEventListener('change', function() {
-      document.querySelectorAll('.costume-card').forEach(c => c.classList.remove('selected'));
-      this.closest('.costume-card').classList.add('selected');
-      updateTotal();
-    });
-  });
+  function onCostumeChange_H(i) {
+    document.querySelectorAll('#haitiMasqSection_'+i+' .costume-card').forEach(function(c){ c.classList.remove('selected'); });
+    var r = document.querySelector('input[name="h'+i+'_costume"]:checked');
+    if (r) r.closest('.costume-card').classList.add('selected');
+    updateTotal();
+  }
 
-  // Addon toggle
-  function toggleAddon(div) {
-    const cb = div.querySelector('input[type="checkbox"]');
+  function toggleAddon_H(div, i) {
+    var cb = div.querySelector('input[type="checkbox"]');
     cb.checked = !cb.checked;
     div.classList.toggle('addon-selected', cb.checked);
     updateTotal();
   }
 
-  // Dynamic shirt rows
-  const SHIRT_SIZES = ['XS','Small','Medium','Large','XL','XXL'];
+  // ── Shirt rows ───────────────────────────────────────────────────────────
+  var SHIRT_SIZES = ['XS','Small','Medium','Large','XL','XXL'];
 
   function addShirtRow(type) {
-    const container = document.getElementById(type + 'Rows');
-    const row = document.createElement('div');
+    var container = document.getElementById(type+'Rows');
+    var row = document.createElement('div');
     row.className = 'shirt-row';
-    row.innerHTML = `
-      <span class="parent-qty-label">Size</span>
-      <select class="${type}-size-sel" onchange="updateTotal()" style="flex:1;">
-        <option value="">— Select —</option>
-        ${SHIRT_SIZES.map(s => `<option>${s}</option>`).join('')}
-      </select>
-      <span class="parent-qty-label">Qty</span>
-      <input type="number" class="${type}-qty-inp" min="1" max="20" value="1" onchange="updateTotal()" style="width:54px;padding:6px 8px;border:1.5px solid var(--border);border-radius:8px;font-size:0.82rem;flex-shrink:0;">
-      <button type="button" class="remove-row-btn" onclick="removeShirtRow(this)">✕</button>
-    `;
+    row.innerHTML =
+      '<span class="parent-qty-label">Size</span>' +
+      '<select class="'+type+'-size-sel" onchange="updateTotal()" style="flex:1;">' +
+        '<option value="">Select</option>' +
+        SHIRT_SIZES.map(function(s){ return '<option>'+s+'</option>'; }).join('') +
+      '</select>' +
+      '<span class="parent-qty-label">Qty</span>' +
+      '<input type="number" class="'+type+'-qty-inp" min="1" max="20" value="1" onchange="updateTotal()" style="width:54px;padding:6px 8px;border:1.5px solid var(--border);border-radius:8px;font-size:0.82rem;flex-shrink:0;">' +
+      '<button type="button" class="remove-row-btn" onclick="removeShirtRow(this)">&#10005;</button>';
     container.appendChild(row);
     updateTotal();
   }
@@ -1421,167 +1603,254 @@
     updateTotal();
   }
 
-  // Total calculation
+  // ── Total calculation ────────────────────────────────────────────────────
   function updateTotal() {
-    const selectedCostume = document.querySelector('input[name="costume"]:checked');
+    var grandCostume = 0, grandAddons = 0, parentTotal = 0;
+    var anyContact = false;
 
-    // Ultra Frontline has no set price — show contact prompt
-    const isUltraContact = selectedCostume && selectedCostume.value === 'Girls Ultra';
-    if (isUltraContact) {
+    for (var i = 1; i <= MASQ_COUNT; i++) {
+      var sc = document.querySelector('input[name="h'+i+'_costume"]:checked');
+      if (sc && sc.value === 'Girls Ultra') { anyContact = true; continue; }
+      if (sc) grandCostume += parseInt(sc.dataset.price) || 0;
+      document.querySelectorAll('input[name="h'+i+'_addons"]:checked').forEach(function(cb){
+        grandAddons += parseInt(cb.dataset.price) || 0;
+      });
+    }
+
+    document.querySelectorAll('#tshirtRows .shirt-row').forEach(function(row){
+      var sel = row.querySelector('.tshirt-size-sel');
+      var qty = parseInt(row.querySelector('.tshirt-qty-inp')?.value) || 1;
+      if (sel && sel.value) parentTotal += qty * 25;
+    });
+    document.querySelectorAll('#jerseyRows .shirt-row').forEach(function(row){
+      var sel = row.querySelector('.jersey-size-sel');
+      var qty = parseInt(row.querySelector('.jersey-qty-inp')?.value) || 1;
+      if (sel && sel.value) parentTotal += qty * 35;
+    });
+
+    if (anyContact) {
       document.getElementById('costumeTotalDisplay').textContent = 'Contact for Pricing';
       document.getElementById('totalDisplay').textContent = 'Contact for Pricing';
-      document.getElementById('depositDisplay').textContent = '—';
-      // Still calculate add-ons and parent items normally
-      let addonTotal = 0;
-      document.querySelectorAll('input[name="addons"]:checked').forEach(cb => {
-        addonTotal += parseInt(cb.dataset.price) || 0;
-      });
-      let parentTotal = 0;
-      document.querySelectorAll('#tshirtRows .shirt-row').forEach(row => {
-        const sel = row.querySelector('.tshirt-size-sel');
-        const qty = parseInt(row.querySelector('.tshirt-qty-inp')?.value) || 1;
-        if (sel && sel.value) parentTotal += qty * 22;
-      });
-      document.querySelectorAll('#jerseyRows .shirt-row').forEach(row => {
-        const sel = row.querySelector('.jersey-size-sel');
-        const qty = parseInt(row.querySelector('.jersey-qty-inp')?.value) || 1;
-        if (sel && sel.value) parentTotal += qty * 30;
-      });
-      document.getElementById('addonTotalDisplay').textContent = '$' + addonTotal;
-      document.getElementById('parentTotalDisplay').textContent = '$' + parentTotal;
+      document.getElementById('depositDisplay').textContent = '--';
+      document.getElementById('addonTotalDisplay').textContent = '$'+grandAddons;
+      document.getElementById('parentTotalDisplay').textContent = '$'+parentTotal;
       return;
     }
 
-    let costumeTotal = 0;
-    if (selectedCostume) costumeTotal = parseInt(selectedCostume.dataset.price) || 0;
-
-    let addonTotal = 0;
-    document.querySelectorAll('input[name="addons"]:checked').forEach(cb => {
-      addonTotal += parseInt(cb.dataset.price) || 0;
-    });
-
-    let parentTotal = 0;
-    document.querySelectorAll('#tshirtRows .shirt-row').forEach(row => {
-      const sel = row.querySelector('.tshirt-size-sel');
-      const qty = parseInt(row.querySelector('.tshirt-qty-inp')?.value) || 1;
-      if (sel && sel.value) parentTotal += qty * 22;
-    });
-    document.querySelectorAll('#jerseyRows .shirt-row').forEach(row => {
-      const sel = row.querySelector('.jersey-size-sel');
-      const qty = parseInt(row.querySelector('.jersey-qty-inp')?.value) || 1;
-      if (sel && sel.value) parentTotal += qty * 30;
-    });
-
-    const grandTotal = costumeTotal + addonTotal + parentTotal;
-    const totalDeposit = Math.ceil(grandTotal * 0.5);
-
-    document.getElementById('costumeTotalDisplay').textContent = '$' + costumeTotal;
-    document.getElementById('addonTotalDisplay').textContent = '$' + addonTotal;
-    document.getElementById('parentTotalDisplay').textContent = '$' + parentTotal;
-    document.getElementById('totalDisplay').textContent = '$' + grandTotal;
-    document.getElementById('depositDisplay').textContent = '$' + totalDeposit;
+    var grandTotal = grandCostume + grandAddons + parentTotal;
+    var totalDeposit = Math.ceil(grandTotal * 0.5);
+    document.getElementById('costumeTotalDisplay').textContent = '$'+grandCostume;
+    document.getElementById('addonTotalDisplay').textContent   = '$'+grandAddons;
+    document.getElementById('parentTotalDisplay').textContent  = '$'+parentTotal;
+    document.getElementById('totalDisplay').textContent        = '$'+grandTotal;
+    document.getElementById('depositDisplay').textContent      = '$'+totalDeposit;
   }
 
-  // Form submission
-  document.getElementById('registrationForm').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    let valid = true;
+  // ── Validation ────────────────────────────────────────────────────────────
+  function validateAllSections_H() {
+    var valid = true;
 
-    const required = [
-      ['firstName','firstNameError'],['lastName','lastNameError'],
-      ['age','ageError'],['parentName','parentNameError'],
-      ['phone','phoneError'],['email','emailError'],
-      ['topSize','topSizeError'],
-    ];
+    for (var i = 1; i <= MASQ_COUNT; i++) {
+      [['h'+i+'_firstName','h'+i+'_firstNameError'],
+       ['h'+i+'_lastName', 'h'+i+'_lastNameError'],
+       ['h'+i+'_age',      'h'+i+'_ageError'],
+       ['h'+i+'_topSize',  'h'+i+'_topSizeError']
+      ].forEach(function(pair){
+        var f=document.getElementById(pair[0]), e=document.getElementById(pair[1]);
+        if(f&&!f.value.trim()){ if(e) e.style.display='block'; valid=false; }
+        else { if(e) e.style.display='none'; }
+      });
 
-    required.forEach(([fieldId, errorId]) => {
-      const field = document.getElementById(fieldId);
-      const error = document.getElementById(errorId);
-      if (!field.value.trim()) { error.style.display = 'block'; valid = false; }
-      else { error.style.display = 'none'; }
-    });
+      var g  = document.querySelector('input[name="h'+i+'_gender"]:checked');
+      var ge = document.getElementById('h'+i+'_genderError');
+      if(!g){ if(ge) ge.style.display='block'; valid=false; } else { if(ge) ge.style.display='none'; }
 
-    const email = document.getElementById('email').value;
-    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      document.getElementById('emailError').style.display = 'block'; valid = false;
+      var c  = document.querySelector('input[name="h'+i+'_costume"]:checked');
+      var ce = document.getElementById('h'+i+'_costumeError');
+      if(!c){ if(ce) ce.style.display='block'; valid=false; } else { if(ce) ce.style.display='none'; }
     }
 
-    const gender = document.querySelector('input[name="gender"]:checked');
-    if (!gender) { document.getElementById('genderError').style.display = 'block'; valid = false; }
-    else { document.getElementById('genderError').style.display = 'none'; }
-
-    const costume = document.querySelector('input[name="costume"]:checked');
-    if (!costume) { document.getElementById('costumeError').style.display = 'block'; valid = false; }
-    else { document.getElementById('costumeError').style.display = 'none'; }
-
-    if (!valid) return;
-
-    const addons = Array.from(document.querySelectorAll('input[name="addons"]:checked')).map(cb => cb.value);
-
-    const tshirtItems = [];
-    document.querySelectorAll('#tshirtRows .shirt-row').forEach(row => {
-      const size = row.querySelector('.tshirt-size-sel')?.value;
-      const qty = parseInt(row.querySelector('.tshirt-qty-inp')?.value) || 1;
-      if (size) tshirtItems.push(`${size} x${qty}`);
+    [['parentName','parentNameError'],['phone','phoneError'],['email','emailError']].forEach(function(pair){
+      var f=document.getElementById(pair[0]), e=document.getElementById(pair[1]);
+      if(f&&!f.value.trim()){ if(e) e.style.display='block'; valid=false; }
+      else { if(e) e.style.display='none'; }
     });
-    const jerseyItems = [];
-    document.querySelectorAll('#jerseyRows .shirt-row').forEach(row => {
-      const size = row.querySelector('.jersey-size-sel')?.value;
-      const qty = parseInt(row.querySelector('.jersey-qty-inp')?.value) || 1;
-      if (size) jerseyItems.push(`${size} x${qty}`);
+    var emailVal = document.getElementById('email')?.value || '';
+    if(emailVal && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)){
+      var emailErr = document.getElementById('emailError');
+      if(emailErr) emailErr.style.display='block';
+      valid=false;
+    }
+
+    if(!valid){
+      var firstErr = document.querySelector('.error-msg[style*="block"]');
+      if(firstErr) firstErr.scrollIntoView({behavior:'smooth',block:'center'});
+    }
+    return valid;
+  }
+
+  // ── Review Modal ──────────────────────────────────────────────────────────
+  function openReviewModal_H() {
+    if(!validateAllSections_H()) return;
+
+    var html = '<p class="review-intro">Please review the information below carefully before submitting. Sizes cannot be changed after submission.</p>';
+
+    for(var i=1; i<=MASQ_COUNT; i++){
+      var fn  = document.getElementById('h'+i+'_firstName')?.value||'';
+      var ln  = document.getElementById('h'+i+'_lastName')?.value||'';
+      var age = document.getElementById('h'+i+'_age')?.value||'';
+      var gender  = document.querySelector('input[name="h'+i+'_gender"]:checked')?.value||'';
+      var cosR    = document.querySelector('input[name="h'+i+'_costume"]:checked');
+      var costume = cosR ? cosR.value : '';
+      var cosPrice= cosR && cosR.dataset.price!=='0' ? ' ($'+cosR.dataset.price+')' : '';
+      var addons  = Array.from(document.querySelectorAll('input[name="h'+i+'_addons"]:checked')).map(function(cb){return cb.value;}).join(', ')||'None';
+      var topSz   = document.getElementById('h'+i+'_topSize')?.value||'';
+      var botSz   = document.getElementById('h'+i+'_bottomSize')?.value||'';
+
+      html += '<div class="review-masq-block">' +
+        '<div class="review-masq-header">Masquerader '+i+(fn?' - '+fn+' '+ln:'')+'</div>' +
+        '<div class="review-masq-body">' +
+          '<div class="review-row"><span class="review-row-label">Name</span><span class="review-row-value">'+fn+' '+ln+'</span></div>' +
+          '<div class="review-row"><span class="review-row-label">Age</span><span class="review-row-value">'+age+'</span></div>' +
+          '<div class="review-row"><span class="review-row-label">Gender</span><span class="review-row-value">'+gender+'</span></div>' +
+          '<div class="review-row"><span class="review-row-label">Costume</span><span class="review-row-value">'+costume+cosPrice+'</span></div>' +
+          '<div class="review-row"><span class="review-row-label">Add-Ons</span><span class="review-row-value">'+addons+'</span></div>' +
+          '<div class="review-row"><span class="review-row-label">Child Size</span><span class="review-row-value">'+topSz+'</span></div>' +
+          (botSz?'<div class="review-row"><span class="review-row-label">Adult Size</span><span class="review-row-value">'+botSz+'</span></div>':'') +
+        '</div></div>';
+    }
+
+    var pName  = document.getElementById('parentName')?.value||'';
+    var pEmail = document.getElementById('email')?.value||'';
+    var pPhone = document.getElementById('phone')?.value||'';
+    html += '<div class="review-shared-block"><div class="review-shared-title">Parent / Guardian</div>' +
+      '<div class="review-masq-body">' +
+      '<div class="review-row"><span class="review-row-label">Name</span><span class="review-row-value">'+pName+'</span></div>' +
+      '<div class="review-row"><span class="review-row-label">Email</span><span class="review-row-value">'+pEmail+'</span></div>' +
+      '<div class="review-row"><span class="review-row-label">Phone</span><span class="review-row-value">'+pPhone+'</span></div>' +
+      '</div></div>';
+
+    var shirts = [];
+    document.querySelectorAll('#tshirtRows .shirt-row').forEach(function(row){
+      var sz=row.querySelector('.tshirt-size-sel')?.value, q=parseInt(row.querySelector('.tshirt-qty-inp')?.value)||1;
+      if(sz) shirts.push('Unisex T-Shirt, '+sz+' x'+q);
+    });
+    document.querySelectorAll('#jerseyRows .shirt-row').forEach(function(row){
+      var sz=row.querySelector('.jersey-size-sel')?.value, q=parseInt(row.querySelector('.jersey-qty-inp')?.value)||1;
+      if(sz) shirts.push('Unisex Jersey, '+sz+' x'+q);
+    });
+    if(shirts.length){
+      html += '<div class="review-shared-block"><div class="review-shared-title">Parent Apparel</div>' +
+        '<div class="review-masq-body">'+shirts.map(function(s){return '<div class="review-row"><span class="review-row-value" style="text-align:left;">'+s+'</span></div>';}).join('')+'</div></div>';
+    }
+
+    var totalTxt   = document.getElementById('totalDisplay').textContent;
+    var depositTxt = document.getElementById('depositDisplay').textContent;
+    html += '<div class="review-total-block">' +
+      '<div class="review-total-row"><span>Estimated Total</span><span>'+totalTxt+'</span></div>' +
+      '<div class="review-total-row big"><span>Deposit Due Now (50%)</span><span>'+depositTxt+'</span></div>' +
+      '</div>';
+
+    document.getElementById('reviewBody').innerHTML = html;
+    document.getElementById('reviewSubmitBtn').disabled = false;
+    document.getElementById('reviewSubmitBtn').textContent = 'Confirm & Submit';
+    document.getElementById('reviewModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeReviewModal_H() {
+    document.getElementById('reviewModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  async function confirmSubmit_H() {
+    var btn = document.getElementById('reviewSubmitBtn');
+    btn.disabled = true;
+    btn.textContent = 'Submitting...';
+
+    var masqLines = [];
+    for(var i=1; i<=MASQ_COUNT; i++){
+      var fn  = document.getElementById('h'+i+'_firstName')?.value||'';
+      var ln  = document.getElementById('h'+i+'_lastName')?.value||'';
+      var cosR= document.querySelector('input[name="h'+i+'_costume"]:checked');
+      masqLines.push(
+        'Masquerader '+i+': '+fn+' '+ln+
+        ', Age '+(document.getElementById('h'+i+'_age')?.value||'')+
+        ', '+(document.querySelector('input[name="h'+i+'_gender"]:checked')?.value||'')+
+        ', '+(cosR?cosR.value:'N/A')+
+        (cosR&&cosR.dataset.price!=='0'?' ($'+cosR.dataset.price+')':'')+
+        ', Child Size: '+(document.getElementById('h'+i+'_topSize')?.value||'')+
+        ', Adult Size: '+(document.getElementById('h'+i+'_bottomSize')?.value||'N/A')+
+        ', Add-ons: '+(Array.from(document.querySelectorAll('input[name="h'+i+'_addons"]:checked')).map(function(cb){return cb.value;}).join(', ')||'None')
+      );
+    }
+
+    var emailVal   = document.getElementById('email').value;
+    var parentName = document.getElementById('parentName').value;
+    var shirts = [];
+    document.querySelectorAll('#tshirtRows .shirt-row').forEach(function(row){
+      var sz=row.querySelector('.tshirt-size-sel')?.value, q=parseInt(row.querySelector('.tshirt-qty-inp')?.value)||1;
+      if(sz) shirts.push('Unisex T-Shirt, '+sz+' x'+q);
+    });
+    document.querySelectorAll('#jerseyRows .shirt-row').forEach(function(row){
+      var sz=row.querySelector('.jersey-size-sel')?.value, q=parseInt(row.querySelector('.jersey-qty-inp')?.value)||1;
+      if(sz) shirts.push('Unisex Jersey, '+sz+' x'+q);
     });
 
-    const isUltra = costume.value === 'Girls Ultra';
-    document.getElementById('ultraReminder').style.display = isUltra ? 'block' : 'none';
-    document.getElementById('successEtransferMsg').style.display = 'inline';
+    var firstMasq = {
+      firstName: document.getElementById('h1_firstName')?.value||'',
+      lastName:  document.getElementById('h1_lastName')?.value||'',
+      costume:   document.querySelector('input[name="h1_costume"]:checked')?.value||''
+    };
+    var totalTxt   = document.getElementById('totalDisplay').textContent;
+    var depositTxt = document.getElementById('depositDisplay').textContent;
+    var hasUltra   = Array.from({length:MASQ_COUNT},function(_,k){return k+1;})
+                         .some(function(j){ var r=document.querySelector('input[name="h'+j+'_costume"]:checked'); return r&&r.value==='Girls Ultra'; });
 
-    const formData = {
-      firstName: document.getElementById('firstName').value,
-      lastName: document.getElementById('lastName').value,
-      age: document.getElementById('age').value,
-      gender: gender.value,
-      parentName: document.getElementById('parentName').value,
-      phone: document.getElementById('phone').value,
-      instagramHandle: document.getElementById('instagramHandle').value || 'N/A',
-      tiktokHandle: document.getElementById('tiktokHandle').value || 'N/A',
-      email: email,
-      costume: costume.value,
-      addons: addons.join(', ') || 'None',
-      tshirt: tshirtItems.length > 0 ? tshirtItems.join(', ') : 'None',
-      jersey: jerseyItems.length > 0 ? jerseyItems.join(', ') : 'None',
-      childSize: document.getElementById('topSize').value,
-      adultSize: document.getElementById('bottomSize').value || 'N/A',
-      notes: document.getElementById('notes').value || 'None',
-      estimatedTotal: document.getElementById('totalDisplay').textContent,
-      depositDue: document.getElementById('depositDisplay').textContent
+    var formData = {
+      masqueraderCount: MASQ_COUNT,
+      masqueraders: masqLines.join('\n\n'),
+      parentName:   parentName,
+      phone:        document.getElementById('phone').value,
+      email:        emailVal,
+      instagram:    document.getElementById('instagramHandle').value||'N/A',
+      tiktok:       document.getElementById('tiktokHandle').value||'N/A',
+      notes:        document.getElementById('notes').value||'None',
+      apparel:      shirts.join(', ')||'None',
+      estimatedTotal: totalTxt,
+      depositDue:     depositTxt,
+      _subject: 'Ayiti Cheri Registration - '+firstMasq.firstName+' '+firstMasq.lastName+
+                (MASQ_COUNT>1?' + '+(MASQ_COUNT-1)+' more':'')+' - '+firstMasq.costume
     };
 
     try {
       await fetch('https://formspree.io/f/mgoqlgry', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
-          ...formData,
-          _subject: `Ayiti Chéri Registration - ${formData.firstName} ${formData.lastName} - ${formData.costume}`
-        })
+        headers: {'Content-Type':'application/json','Accept':'application/json'},
+        body: JSON.stringify(formData)
       });
-    } catch(err) { console.error(err); }
+    } catch(err){ console.error(err); }
 
-    document.getElementById('successName').textContent = formData.firstName + ' ' + formData.lastName;
+    closeReviewModal_H();
+    document.getElementById('ultraReminder').style.display = hasUltra ? 'block' : 'none';
+    document.getElementById('successEtransferMsg').style.display = 'inline';
+
+    var nameDisplay = MASQ_COUNT > 1
+      ? Array.from({length:MASQ_COUNT},function(_,k){return document.getElementById('h'+(k+1)+'_firstName')?.value||'';}).join(', ')
+      : firstMasq.firstName+' '+firstMasq.lastName;
+    document.getElementById('successName').textContent = nameDisplay;
     document.getElementById('successMessage').style.display = 'block';
     document.getElementById('registrationForm').style.display = 'none';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
 
-  // ── Add-On Carousel ────────────────────────────────────────────────────────
+  // ── Add-On Carousel ───────────────────────────────────────────────────────
   const CAROUSEL_ITEMS = [
-    { src: 'tutu.jpeg',                caption: 'Full Tutu' },
-    { src: 'full collar.jpeg',         caption: 'Full Collar' },
-    { src: 'small bacpac add on.jpg',  caption: 'Backpack' },
-    { src: 'boys add on.jpg',          caption: 'Backpack' },
-    { src: 'boys-addon-face.jpg',      caption: 'Bucket Hat' },
-    // New photos — add here once uploaded:
-    // { src: 'filename.jpeg', caption: 'Caption from PDF' },
+    { src: 'tutu.jpeg',               caption: 'Full Tutu' },
+    { src: 'full collar.jpeg',        caption: 'Full Collar' },
+    { src: 'small bacpac add on.jpg', caption: 'Girls Backpack' },
+    { src: 'boys add on.jpg',         caption: 'Boys Backpack' },
+    { src: 'boys-addon-face.jpg',     caption: 'Bucket Hat' },
   ];
 
   const PER_PAGE = 3;
@@ -1591,28 +1860,18 @@
   function buildCarousel() {
     const stage  = document.getElementById('carouselStage');
     const thumbs = document.getElementById('carouselThumbs');
-    stage.innerHTML  = '';
-    thumbs.innerHTML = '';
-
-    // Build slides (show PER_PAGE at a time)
-    for (let i = 0; i < PER_PAGE; i++) {
-      const idx  = (carouselIndex + i) % CAROUSEL_ITEMS.length;
+    stage.innerHTML = ''; thumbs.innerHTML = '';
+    for (let k = 0; k < PER_PAGE; k++) {
+      const idx  = (carouselIndex + k) % CAROUSEL_ITEMS.length;
       const item = CAROUSEL_ITEMS[idx];
       const slide = document.createElement('div');
       slide.className = 'carousel-slide';
-      slide.innerHTML = `
-        <img src="${item.src}" alt="${item.caption}" onclick="openModal('${item.src}')">
-        <span class="carousel-caption">${item.caption}</span>
-      `;
+      slide.innerHTML = `<img src="${item.src}" alt="${item.caption}" onclick="openModal('${item.src}')"><span class="carousel-caption">${item.caption}</span>`;
       stage.appendChild(slide);
     }
-
-    // Build thumbnails
     CAROUSEL_ITEMS.forEach((item, idx) => {
       const thumb = document.createElement('img');
-      thumb.src = item.src;
-      thumb.alt = item.caption;
-      thumb.title = item.caption;
+      thumb.src = item.src; thumb.alt = item.caption; thumb.title = item.caption;
       thumb.className = 'carousel-thumb' + (idx === carouselIndex ? ' active' : '');
       thumb.onclick = () => { carouselIndex = idx; buildCarousel(); resetTimer(); };
       thumbs.appendChild(thumb);
@@ -1621,36 +1880,33 @@
 
   function carouselStep(dir) {
     carouselIndex = (carouselIndex + dir + CAROUSEL_ITEMS.length) % CAROUSEL_ITEMS.length;
-    buildCarousel();
-    resetTimer();
+    buildCarousel(); resetTimer();
   }
 
   function resetTimer() {
     clearInterval(carouselTimer);
-    carouselTimer = setInterval(() => {
-      carouselIndex = (carouselIndex + 1) % CAROUSEL_ITEMS.length;
-      buildCarousel();
-    }, 4000);
+    carouselTimer = setInterval(() => { carouselIndex=(carouselIndex+1)%CAROUSEL_ITEMS.length; buildCarousel(); }, 4000);
   }
 
-  buildCarousel();
-  resetTimer();
-  // ── End Carousel ────────────────────────────────────────────────────────────
-
+  // ── Photo Modal ───────────────────────────────────────────────────────────
   function openModal(src) {
     document.getElementById('modalImg').src = src;
     document.getElementById('photoModal').classList.add('open');
     document.body.style.overflow = 'hidden';
   }
-
   function closeModal() {
     document.getElementById('photoModal').classList.remove('open');
     document.body.style.overflow = '';
   }
 
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeModal();
+    if (e.key === 'Escape') { closeModal(); closeReviewModal_H(); }
   });
+
+  // ── Initialise ────────────────────────────────────────────────────────────
+  buildMasqueraderSections(1);
+  buildCarousel();
+  resetTimer();
 </script>
 
 <div id="photoModal" class="photo-modal" onclick="closeModal()">
