@@ -1110,8 +1110,8 @@
       <div style="font-size:2.5rem;margin-bottom:1rem;">🇭🇹</div>
       <h3>Thank you for your submission!</h3>
       <p>Your registration for <strong id="successName" style="color:var(--blue);"></strong> has been received.<br><br>
-      To complete registration, please send your E-transfer to <strong style="color:var(--blue);">4theloveofmas@gmail.com</strong>. Once the payment has been received your child's spot will be officially confirmed in our system.<br><br>
-      Please include your child's name in the E-transfer memo section.<br><br>
+      <span id="successEtransferMsg">To complete registration, please send your E-transfer to <strong style="color:var(--blue);">4theloveofmas@gmail.com</strong>. Once the payment has been received your child's spot will be officially confirmed in our system.<br><br>
+      Please include your child's name in the E-transfer memo section.<br><br></span>
       Thank you for your support — we can't wait to get started! 🇭🇹</p>
       <div id="ultraReminder" style="display:none;margin-top:1.25rem;padding:1rem 1.25rem;border:2px solid var(--gold);border-radius:10px;background:rgba(200,151,26,0.07);text-align:left;">
         <p style="font-weight:700;color:var(--blue);margin-bottom:0.6rem;">⭐ Ultra Frontline — Important Next Step</p>
@@ -1224,11 +1224,37 @@
 
   // Total calculation
   function updateTotal() {
-    let costumeTotal = 0;
     const selectedCostume = document.querySelector('input[name="costume"]:checked');
-    if (selectedCostume) {
-      costumeTotal = parseInt(selectedCostume.dataset.price) || 0;
+
+    // Ultra Frontline has no set price — show contact prompt
+    const isUltraContact = selectedCostume && selectedCostume.value === 'Girls Ultra';
+    if (isUltraContact) {
+      document.getElementById('costumeTotalDisplay').textContent = 'Contact for Pricing';
+      document.getElementById('totalDisplay').textContent = 'Contact for Pricing';
+      document.getElementById('depositDisplay').textContent = '—';
+      // Still calculate add-ons and parent items normally
+      let addonTotal = 0;
+      document.querySelectorAll('input[name="addons"]:checked').forEach(cb => {
+        addonTotal += parseInt(cb.dataset.price) || 0;
+      });
+      let parentTotal = 0;
+      document.querySelectorAll('#tshirtRows .shirt-row').forEach(row => {
+        const sel = row.querySelector('.tshirt-size-sel');
+        const qty = parseInt(row.querySelector('.tshirt-qty-inp')?.value) || 1;
+        if (sel && sel.value) parentTotal += qty * 22;
+      });
+      document.querySelectorAll('#jerseyRows .shirt-row').forEach(row => {
+        const sel = row.querySelector('.jersey-size-sel');
+        const qty = parseInt(row.querySelector('.jersey-qty-inp')?.value) || 1;
+        if (sel && sel.value) parentTotal += qty * 30;
+      });
+      document.getElementById('addonTotalDisplay').textContent = '$' + addonTotal;
+      document.getElementById('parentTotalDisplay').textContent = '$' + parentTotal;
+      return;
     }
+
+    let costumeTotal = 0;
+    if (selectedCostume) costumeTotal = parseInt(selectedCostume.dataset.price) || 0;
 
     let addonTotal = 0;
     document.querySelectorAll('input[name="addons"]:checked').forEach(cb => {
@@ -1308,6 +1334,7 @@
 
     const isUltra = costume.value === 'Girls Ultra';
     document.getElementById('ultraReminder').style.display = isUltra ? 'block' : 'none';
+    document.getElementById('successEtransferMsg').style.display = isUltra ? 'none' : 'inline';
 
     const formData = {
       firstName: document.getElementById('firstName').value,
