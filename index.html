@@ -518,6 +518,56 @@
     margin-bottom: 0;
   }
 
+  .shirt-size-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .shirt-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .shirt-row select { flex: 1; }
+  .shirt-row input[type="number"] {
+    width: 54px;
+    padding: 6px 8px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.82rem;
+    flex-shrink: 0;
+  }
+  .remove-row-btn {
+    background: none;
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    width: 28px; height: 28px;
+    cursor: pointer;
+    color: var(--text-light);
+    font-size: 0.72rem;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    transition: border-color 0.2s, color 0.2s;
+    padding: 0;
+  }
+  .remove-row-btn:hover { border-color: var(--red); color: var(--red); }
+  .add-size-btn {
+    background: none;
+    border: 1.5px dashed var(--blue);
+    border-radius: 8px;
+    color: var(--blue);
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 6px 12px;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    width: 100%;
+    margin-top: 0.25rem;
+    transition: background 0.2s;
+  }
+  .add-size-btn:hover { background: rgba(0,48,135,0.05); }
+
   /* SIZE GRID */
   .size-grid {
     display: grid;
@@ -977,18 +1027,8 @@
             <span class="parent-item-name">Unisex T-Shirt</span>
             <span class="parent-item-price">$22 each</span>
           </div>
-          <div class="parent-size-row">
-            <label class="parent-qty-label" for="tshirtSize">Size</label>
-            <select id="tshirtSize" name="tshirtSize" style="flex:1;">
-              <option value="">No T-Shirt</option>
-              <option>Small</option>
-              <option>Medium</option>
-              <option>Large</option>
-              <option>XL</option>
-            </select>
-            <label class="parent-qty-label" for="tshirtQty" style="margin-left:0.5rem;">Qty</label>
-            <input type="number" id="tshirtQty" name="tshirtQty" min="0" max="10" value="0" style="width:60px;flex:none;" onchange="updateTotal()">
-          </div>
+          <div id="tshirtRows" class="shirt-size-rows"></div>
+          <button type="button" class="add-size-btn" onclick="addShirtRow('tshirt')">+ Add a size</button>
         </div>
 
         <div class="parent-item">
@@ -996,18 +1036,8 @@
             <span class="parent-item-name">Unisex Jersey</span>
             <span class="parent-item-price">$30 each</span>
           </div>
-          <div class="parent-size-row">
-            <label class="parent-qty-label" for="jerseySize">Size</label>
-            <select id="jerseySize" name="jerseySize" style="flex:1;">
-              <option value="">No Jersey</option>
-              <option>Small</option>
-              <option>Medium</option>
-              <option>Large</option>
-              <option>XL</option>
-            </select>
-            <label class="parent-qty-label" for="jerseyQty" style="margin-left:0.5rem;">Qty</label>
-            <input type="number" id="jerseyQty" name="jerseyQty" min="0" max="10" value="0" style="width:60px;flex:none;" onchange="updateTotal()">
-          </div>
+          <div id="jerseyRows" class="shirt-size-rows"></div>
+          <button type="button" class="add-size-btn" onclick="addShirtRow('jersey')">+ Add a size</button>
         </div>
 
       </div>
@@ -1083,6 +1113,13 @@
       To complete registration, please send your E-transfer to <strong style="color:var(--blue);">4theloveofmas@gmail.com</strong>. Once the payment has been received your child's spot will be officially confirmed in our system.<br><br>
       Please include your child's name in the E-transfer memo section.<br><br>
       Thank you for your support — we can't wait to get started! 🇭🇹</p>
+      <div id="ultraReminder" style="display:none;margin-top:1.25rem;padding:1rem 1.25rem;border:2px solid var(--gold);border-radius:10px;background:rgba(200,151,26,0.07);text-align:left;">
+        <p style="font-weight:700;color:var(--blue);margin-bottom:0.6rem;">⭐ Ultra Frontline — Important Next Step</p>
+        <p style="font-size:0.88rem;line-height:1.7;color:var(--text);">Since you selected the <strong>Ultra Frontline</strong> costume, please reach out to our section leader directly to confirm pricing and availability before your deposit is sent.<br><br>
+        <strong>Nadea Chapman</strong><br>
+        📞 <a href="tel:6478801405" style="color:var(--blue);font-weight:700;">647.880.1405</a><br>
+        ✉️ <a href="mailto:4theloveofmas@gmail.com" style="color:var(--blue);font-weight:700;">4theloveofmas@gmail.com</a></p>
+      </div>
     </div>
 
   </form>
@@ -1159,6 +1196,32 @@
     updateTotal();
   }
 
+  // Dynamic shirt rows
+  const SHIRT_SIZES = ['XS','Small','Medium','Large','XL','XXL'];
+
+  function addShirtRow(type) {
+    const container = document.getElementById(type + 'Rows');
+    const row = document.createElement('div');
+    row.className = 'shirt-row';
+    row.innerHTML = `
+      <span class="parent-qty-label">Size</span>
+      <select class="${type}-size-sel" onchange="updateTotal()" style="flex:1;">
+        <option value="">— Select —</option>
+        ${SHIRT_SIZES.map(s => `<option>${s}</option>`).join('')}
+      </select>
+      <span class="parent-qty-label">Qty</span>
+      <input type="number" class="${type}-qty-inp" min="1" max="20" value="1" onchange="updateTotal()" style="width:54px;padding:6px 8px;border:1.5px solid var(--border);border-radius:8px;font-size:0.82rem;flex-shrink:0;">
+      <button type="button" class="remove-row-btn" onclick="removeShirtRow(this)">✕</button>
+    `;
+    container.appendChild(row);
+    updateTotal();
+  }
+
+  function removeShirtRow(btn) {
+    btn.closest('.shirt-row').remove();
+    updateTotal();
+  }
+
   // Total calculation
   function updateTotal() {
     let costumeTotal = 0;
@@ -1173,10 +1236,16 @@
     });
 
     let parentTotal = 0;
-    const tshirtQty = parseInt(document.getElementById('tshirtQty').value) || 0;
-    const jerseyQty = parseInt(document.getElementById('jerseyQty').value) || 0;
-    parentTotal += tshirtQty * 22;
-    parentTotal += jerseyQty * 30;
+    document.querySelectorAll('#tshirtRows .shirt-row').forEach(row => {
+      const sel = row.querySelector('.tshirt-size-sel');
+      const qty = parseInt(row.querySelector('.tshirt-qty-inp')?.value) || 1;
+      if (sel && sel.value) parentTotal += qty * 22;
+    });
+    document.querySelectorAll('#jerseyRows .shirt-row').forEach(row => {
+      const sel = row.querySelector('.jersey-size-sel');
+      const qty = parseInt(row.querySelector('.jersey-qty-inp')?.value) || 1;
+      if (sel && sel.value) parentTotal += qty * 30;
+    });
 
     const grandTotal = costumeTotal + addonTotal + parentTotal;
     const totalDeposit = Math.ceil(grandTotal * 0.5);
@@ -1223,10 +1292,22 @@
     if (!valid) return;
 
     const addons = Array.from(document.querySelectorAll('input[name="addons"]:checked')).map(cb => cb.value);
-    const tshirtSize = document.getElementById('tshirtSize').value;
-    const tshirtQty = document.getElementById('tshirtQty').value;
-    const jerseySize = document.getElementById('jerseySize').value;
-    const jerseyQty = document.getElementById('jerseyQty').value;
+
+    const tshirtItems = [];
+    document.querySelectorAll('#tshirtRows .shirt-row').forEach(row => {
+      const size = row.querySelector('.tshirt-size-sel')?.value;
+      const qty = parseInt(row.querySelector('.tshirt-qty-inp')?.value) || 1;
+      if (size) tshirtItems.push(`${size} x${qty}`);
+    });
+    const jerseyItems = [];
+    document.querySelectorAll('#jerseyRows .shirt-row').forEach(row => {
+      const size = row.querySelector('.jersey-size-sel')?.value;
+      const qty = parseInt(row.querySelector('.jersey-qty-inp')?.value) || 1;
+      if (size) jerseyItems.push(`${size} x${qty}`);
+    });
+
+    const isUltra = costume.value === 'Girls Ultra';
+    document.getElementById('ultraReminder').style.display = isUltra ? 'block' : 'none';
 
     const formData = {
       firstName: document.getElementById('firstName').value,
@@ -1240,8 +1321,8 @@
       email: email,
       costume: costume.value,
       addons: addons.join(', ') || 'None',
-      tshirt: tshirtSize && tshirtQty > 0 ? `${tshirtSize} x${tshirtQty}` : 'None',
-      jersey: jerseySize && jerseyQty > 0 ? `${jerseySize} x${jerseyQty}` : 'None',
+      tshirt: tshirtItems.length > 0 ? tshirtItems.join(', ') : 'None',
+      jersey: jerseyItems.length > 0 ? jerseyItems.join(', ') : 'None',
       childSize: document.getElementById('topSize').value,
       adultSize: document.getElementById('bottomSize').value || 'N/A',
       notes: document.getElementById('notes').value || 'None',
