@@ -1823,6 +1823,7 @@
                 (MASQ_COUNT>1?' + '+(MASQ_COUNT-1)+' more':'')+' - '+firstMasq.costume
     };
 
+    // ── Formspree (email notification) ──────────────────────────────────────
     try {
       await fetch('https://formspree.io/f/mgoqlgry', {
         method: 'POST',
@@ -1830,6 +1831,20 @@
         body: JSON.stringify(formData)
       });
     } catch(err){ console.error(err); }
+
+    // ── Google Sheets logger ─────────────────────────────────────────────────
+    // Replace SHEETS_LOGGER_URL with your deployed Web App URL from Apps Script
+    var SHEETS_LOGGER_URL = 'SHEETS_LOGGER_URL';
+    if (SHEETS_LOGGER_URL !== 'SHEETS_LOGGER_URL') {
+      try {
+        await fetch(SHEETS_LOGGER_URL, {
+          method: 'POST',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify(formData),
+          mode: 'no-cors'
+        });
+      } catch(err){ console.error('Sheets logger error:', err); }
+    }
 
     closeReviewModal_H();
     document.getElementById('ultraReminder').style.display = hasUltra ? 'block' : 'none';
