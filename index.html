@@ -1832,6 +1832,23 @@
       });
     } catch(err){ console.error(err); }
 
+    // ── EmailJS confirmation to registrant ───────────────────────────────────
+    var HAITI_SERVICE_ID  = 'HAITI_SERVICE_ID';
+    var HAITI_TEMPLATE_ID = 'HAITI_TEMPLATE_ID';
+    if (HAITI_SERVICE_ID !== 'HAITI_SERVICE_ID') {
+      try {
+        await emailjs.send(HAITI_SERVICE_ID, HAITI_TEMPLATE_ID, {
+          to_email:       formData.email,
+          to_name:        formData.parentName,
+          masqueraders:   formData.masqueraders,
+          apparel:        formData.apparel !== 'None' ? formData.apparel : '',
+          notes:          formData.notes   !== 'None' ? formData.notes   : '',
+          estimatedTotal: formData.estimatedTotal,
+          depositDue:     formData.depositDue,
+        });
+      } catch(err){ console.error('EmailJS error:', err); }
+    }
+
     // ── Google Sheets logger (one row per masquerader) ───────────────────────
     var SHEETS_LOGGER_URL = 'https://script.google.com/macros/s/AKfycbx8LAnesm62PuOnJOXQ8wmO5EVOvgECQie6CCOyCsPUaoWLyv7BjR-Po2qNb_iUuZeq/exec';
     if (SHEETS_LOGGER_URL !== 'SHEETS_LOGGER_URL') {
@@ -1941,7 +1958,10 @@
   buildMasqueraderSections(1);
   buildCarousel();
   resetTimer();
+  emailjs.init('_Xsr60054Ozk408fG');
 </script>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
 <div id="photoModal" class="photo-modal" onclick="closeModal()">
   <div class="modal-inner" onclick="event.stopPropagation()">
