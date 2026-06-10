@@ -1832,25 +1832,36 @@
       });
     } catch(err){ console.error(err); }
 
-    // ── Google Sheets logger ─────────────────────────────────────────────────
-    // Replace SHEETS_LOGGER_URL with your deployed Web App URL from Apps Script
+    // ── Google Sheets logger (one row per masquerader) ───────────────────────
     var SHEETS_LOGGER_URL = 'https://script.google.com/macros/s/AKfycbx8LAnesm62PuOnJOXQ8wmO5EVOvgECQie6CCOyCsPUaoWLyv7BjR-Po2qNb_iUuZeq/exec';
     if (SHEETS_LOGGER_URL !== 'SHEETS_LOGGER_URL') {
       try {
-        var params = new URLSearchParams({
-          masqueraderCount: formData.masqueraderCount,
-          masqueraders:     formData.masqueraders,
-          parentName:       formData.parentName,
-          phone:            formData.phone,
-          email:            formData.email,
-          instagram:        formData.instagram,
-          tiktok:           formData.tiktok,
-          apparel:          formData.apparel,
-          notes:            formData.notes,
-          estimatedTotal:   formData.estimatedTotal,
-          depositDue:       formData.depositDue
-        });
-        await fetch(SHEETS_LOGGER_URL + '?' + params.toString(), { mode: 'no-cors' });
+        for (var si = 1; si <= MASQ_COUNT; si++) {
+          var sCosR   = document.querySelector('input[name="h'+si+'_costume"]:checked');
+          var sAddons = Array.from(document.querySelectorAll('input[name="h'+si+'_addons"]:checked')).map(function(cb){return cb.value;}).join(', ') || 'None';
+          var sParams = new URLSearchParams({
+            parentName:     formData.parentName,
+            phone:          formData.phone,
+            email:          formData.email,
+            instagram:      formData.instagram,
+            tiktok:         formData.tiktok,
+            apparel:        formData.apparel,
+            notes:          formData.notes,
+            estimatedTotal: formData.estimatedTotal,
+            depositDue:     formData.depositDue,
+            masqNum:        si,
+            masqCount:      MASQ_COUNT,
+            firstName:      document.getElementById('h'+si+'_firstName')?.value || '',
+            lastName:       document.getElementById('h'+si+'_lastName')?.value  || '',
+            age:            document.getElementById('h'+si+'_age')?.value       || '',
+            gender:         document.querySelector('input[name="h'+si+'_gender"]:checked')?.value || '',
+            costume:        sCosR ? sCosR.value : '',
+            childSize:      document.getElementById('h'+si+'_topSize')?.value    || '',
+            adultSize:      document.getElementById('h'+si+'_bottomSize')?.value || '',
+            addons:         sAddons
+          });
+          await fetch(SHEETS_LOGGER_URL + '?' + sParams.toString(), { mode: 'no-cors' });
+        }
       } catch(err){ console.error('Sheets logger error:', err); }
     }
 
