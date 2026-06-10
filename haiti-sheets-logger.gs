@@ -77,8 +77,6 @@ function doGet(e) {
 // 1. Upload your downloaded CSV anywhere in Google Drive
 // 2. Select importFromDriveCSV from the dropdown and click Run
 function importFromDriveCSV() {
-  const ui = SpreadsheetApp.getUi();
-
   // Search Drive for any CSV file with "formspree" in the name
   const files = DriveApp.searchFiles('title contains "formspree" and mimeType = "text/csv"');
 
@@ -94,24 +92,24 @@ function importFromDriveCSV() {
   }
 
   if (!file) {
-    ui.alert(
-      'CSV not found in Google Drive.\n\n' +
-      'Upload your Formspree CSV to Google Drive (anywhere), then run this again.\n' +
-      'Make sure the filename contains the word "formspree".'
-    );
+    Logger.log('CSV not found. Upload your Formspree CSV to Google Drive and make sure the filename contains "formspree".');
     return;
   }
+
+  Logger.log('Found file: ' + file.getName());
 
   const csvText = file.getBlob().getDataAsString();
   const rows    = Utilities.parseCsv(csvText);
 
   if (rows.length < 2) {
-    ui.alert('The CSV file appears to be empty.');
+    Logger.log('CSV file appears to be empty.');
     return;
   }
 
   const headers = rows[0].map(h => h.toLowerCase().trim());
   const col = name => headers.indexOf(name);
+
+  Logger.log('CSV columns found: ' + headers.join(', '));
 
   const ss    = SpreadsheetApp.openById('1-1tXYk2blhMCHk8k8mxfirz4oE0z5wv9xcPAkSnK94w');
   const sheet = ss.getActiveSheet();
@@ -122,21 +120,21 @@ function importFromDriveCSV() {
     if (!row || row.every(c => !c)) continue;
 
     sheet.appendRow([
-      row[col('date')]               || row[col('timestamp')]        || row[col('created_at')] || '',
-      row[col('masqueradercount')]   || row[col('masquerader count')] || '1',
+      row[col('date')]               || row[col('timestamp')]         || row[col('created_at')] || '',
+      row[col('masqueradercount')]   || row[col('masquerader count')]  || '1',
       row[col('masqueraders')]       || '',
-      row[col('parentname')]         || row[col('parent name')]       || row[col('name')] || '',
+      row[col('parentname')]         || row[col('parent name')]        || row[col('name')] || '',
       row[col('phone')]              || '',
       row[col('email')]              || '',
       row[col('instagram')]          || 'N/A',
       row[col('tiktok')]             || 'N/A',
       row[col('apparel')]            || 'None',
       row[col('notes')]              || 'None',
-      row[col('estimatedtotal')]     || row[col('estimated total')]   || '',
-      row[col('depositdue')]         || row[col('deposit due')]       || '',
+      row[col('estimatedtotal')]     || row[col('estimated total')]    || '',
+      row[col('depositdue')]         || row[col('deposit due')]        || '',
     ]);
     imported++;
   }
 
-  ui.alert('Done! Imported ' + imported + ' registrations from "' + file.getName() + '".');
+  Logger.log('Done! Imported ' + imported + ' registrations from "' + file.getName() + '".');
 }
