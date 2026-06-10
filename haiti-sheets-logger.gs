@@ -11,6 +11,10 @@
  *
  * To update after code changes:
  *   Deploy > Manage Deployments > edit the existing deployment
+ *
+ * To import existing Formspree submissions:
+ *   1. formspree.io → your form → Submissions → Export CSV
+ *   2. Run importFromFormspreeCSV() and paste the CSV text when prompted
  */
 
 function doGet(e) {
@@ -71,4 +75,51 @@ function doGet(e) {
   } catch (err) {
     return ContentService.createTextOutput('Error: ' + err.toString());
   }
+}
+
+// ── Run this once to import existing submissions from Formspree ───────────────
+// 1. formspree.io → your form → Submissions → Export CSV
+// 2. Select all the CSV text, copy it
+// 3. Run this function and paste when prompted
+function importFromFormspreeCSV() {
+  const ui  = SpreadsheetApp.getUi();
+  const res = ui.prompt(
+    'Import Existing Registrations',
+    'Paste the full CSV text exported from Formspree:',
+    ui.ButtonSet.OK_CANCEL
+  );
+  if (res.getSelectedButton() !== ui.Button.OK) return;
+
+  const rows = Utilities.parseCsv(res.getResponseText());
+  if (rows.length < 2) { ui.alert('No data found.'); return; }
+
+  const headers = rows[0].map(h => h.toLowerCase().trim());
+  const col = name => headers.indexOf(name);
+
+  const ss    = SpreadsheetApp.openById('1-1tXYk2blhMCHk8k8mxfirz4oE0z5wv9xcPAkSnK94w');
+  const sheet = ss.getActiveSheet();
+
+  let imported = 0;
+  for (let r = 1; r < rows.length; r++) {
+    const row = rows[r];
+    if (!row || row.every(c => !c)) continue;
+
+    sheet.appendRow([
+      row[col('date')]           || row[col('timestamp')] || row[col('created_at')] || '',
+      row[col('masqueradercount')] || row[col('masquerader count')] || '1',
+      row[col('masqueraders')]   || '',
+      row[col('parentname')]     || row[col('parent name')] || row[col('name')] || '',
+      row[col('phone')]          || '',
+      row[col('email')]          || '',
+      row[col('instagram')]      || 'N/A',
+      row[col('tiktok')]         || 'N/A',
+      row[col('apparel')]        || 'None',
+      row[col('notes')]          || 'None',
+      row[col('estimatedtotal')] || row[col('estimated total')] || '',
+      row[col('depositdue')]     || row[col('deposit due')]     || '',
+    ]);
+    imported++;
+  }
+
+  ui.alert('Done! Imported ' + imported + ' registrations.');
 }
