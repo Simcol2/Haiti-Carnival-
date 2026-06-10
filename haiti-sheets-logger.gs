@@ -9,12 +9,9 @@
  *      - Who has access: Anyone
  *   3. Copy the deployment URL into index.html → SHEETS_LOGGER_URL
  *
- * To update after code changes:
- *   Deploy > Manage Deployments > edit the existing deployment
- *
- * To import existing Formspree submissions:
- *   1. formspree.io → your form → Submissions → Export CSV
- *   2. Run importFromFormspreeCSV() and paste the CSV text when prompted
+ * To import existing registrations from Gmail:
+ *   Run importFromGmail() — it finds all Formspree notification emails
+ *   and pulls the data into the sheet automatically.
  */
 
 function doGet(e) {
@@ -38,7 +35,6 @@ function doGet(e) {
       'Deposit Due',
     ];
 
-    // Write header row on first use
     if (sheet.getLastRow() === 0) {
       sheet.appendRow(HEADERS);
 
@@ -47,12 +43,12 @@ function doGet(e) {
       headerRange.setBackground('#880e0e');
       headerRange.setFontColor('#ffffff');
 
-      sheet.setColumnWidth(3, 420);   // Masqueraders
-      sheet.setColumnWidth(1, 160);   // Timestamp
-      sheet.setColumnWidth(4, 160);   // Parent Name
-      sheet.setColumnWidth(6, 210);   // Email
-      sheet.setColumnWidth(9, 220);   // Parent Apparel
-      sheet.setColumnWidth(10, 220);  // Notes
+      sheet.setColumnWidth(3, 420);
+      sheet.setColumnWidth(1, 160);
+      sheet.setColumnWidth(4, 160);
+      sheet.setColumnWidth(6, 210);
+      sheet.setColumnWidth(9, 220);
+      sheet.setColumnWidth(10, 220);
     }
 
     sheet.appendRow([
@@ -77,49 +73,61 @@ function doGet(e) {
   }
 }
 
-// ── Run this once to import existing submissions from Formspree ───────────────
-// 1. formspree.io → your form → Submissions → Export CSV
-// 2. Select all the CSV text, copy it
-// 3. Run this function and paste when prompted
-function importFromFormspreeCSV() {
-  const ui  = SpreadsheetApp.getUi();
-  const res = ui.prompt(
-    'Import Existing Registrations',
-    'Paste the full CSV text exported from Formspree:',
-    ui.ButtonSet.OK_CANCEL
-  );
-  if (res.getSelectedButton() !== ui.Button.OK) return;
+// ── Import all existing registrations from Gmail ─────────────────────────────
+// Formspree emails you every submission — this reads those emails and logs them.
+// Run this once. It will ask permission to access Gmail the first time.
+function importFromGmail() {
+  const ui = SpreadsheetApp.getUi();
 
-  const rows = Utilities.parseCsv(res.getResponseText());
-  if (rows.length < 2) { ui.alert('No data found.'); return; }
+  const threads = GmailApp.search('subject:"Ayiti Cheri Registration"', 0, 500);
 
-  const headers = rows[0].map(h => h.toLowerCase().trim());
-  const col = name => headers.indexOf(name);
+  if (threads.length === 0) {
+    ui.alert(
+      'No emails found.\n\n' +
+      'Make sure the emails are in your inbox (not spam).\n' +
+      'The script looks for emails with "Ayiti Cheri Registration" in the subject.'
+    );
+    return;
+  }
 
   const ss    = SpreadsheetApp.openById('1-1tXYk2blhMCHk8k8mxfirz4oE0z5wv9xcPAkSnK94w');
   const sheet = ss.getActiveSheet();
 
-  let imported = 0;
-  for (let r = 1; r < rows.length; r++) {
-    const row = rows[r];
-    if (!row || row.every(c => !c)) continue;
-
-    sheet.appendRow([
-      row[col('date')]           || row[col('timestamp')] || row[col('created_at')] || '',
-      row[col('masqueradercount')] || row[col('masquerader count')] || '1',
-      row[col('masqueraders')]   || '',
-      row[col('parentname')]     || row[col('parent name')] || row[col('name')] || '',
-      row[col('phone')]          || '',
-      row[col('email')]          || '',
-      row[col('instagram')]      || 'N/A',
-      row[col('tiktok')]         || 'N/A',
-      row[col('apparel')]        || 'None',
-      row[col('notes')]          || 'None',
-      row[col('estimatedtotal')] || row[col('estimated total')] || '',
-      row[col('depositdue')]     || row[col('deposit due')]     || '',
-    ]);
-    imported++;
+  // Helper: extract a field value from Formspree email body
+  function get(body, key) {
+    // Formspree formats fields as "key: value" — try a few casing variants
+    const pattern = new RegExp(
+      '(?:^|\\n)' + key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\s*:\\s*([^\\n]+)',
+      'i'
+    );
+    const m = body.match(pattern);
+    return m ? m[1].trim() : '';
   }
 
-  ui.alert('Done! Imported ' + imported + ' registrations.');
+  let imported = 0;
+
+  threads.forEach(function(thread) {
+    thread.getMessages().forEach(function(msg) {
+      const body = msg.getPlainBody();
+      const date = Utilities.formatDate(msg.getDate(), 'America/Toronto', 'yyyy-MM-dd HH:mm:ss');
+
+      sheet.appendRow([
+        date,
+        get(body, 'masqueraderCount') || get(body, 'masquerader count') || '1',
+        get(body, 'masqueraders')     || '',
+        get(body, 'parentName')       || get(body, 'parent name')       || '',
+        get(body, 'phone')            || '',
+        get(body, 'email')            || '',
+        get(body, 'instagram')        || 'N/A',
+        get(body, 'tiktok')           || 'N/A',
+        get(body, 'apparel')          || 'None',
+        get(body, 'notes')            || 'None',
+        get(body, 'estimatedTotal')   || get(body, 'estimated total')   || '',
+        get(body, 'depositDue')       || get(body, 'deposit due')       || '',
+      ]);
+      imported++;
+    });
+  });
+
+  ui.alert('Done! Imported ' + imported + ' registrations from Gmail.');
 }
