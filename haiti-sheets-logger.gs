@@ -9,9 +9,9 @@
  *      - Who has access: Anyone
  *   3. Copy the deployment URL into index.html → SHEETS_LOGGER_URL
  *
- * To import existing registrations from Gmail:
- *   Run importFromGmail() — it finds all Formspree notification emails
- *   and pulls the data into the sheet automatically.
+ * To import existing registrations from the Formspree CSV:
+ *   1. Upload the downloaded CSV anywhere in your Google Drive
+ *   2. Run importFromDriveCSV() — it will find the file automatically
  */
 
 function doGet(e) {
@@ -73,61 +73,70 @@ function doGet(e) {
   }
 }
 
-// ── Import all existing registrations from Gmail ─────────────────────────────
-// Formspree emails you every submission — this reads those emails and logs them.
-// Run this once. It will ask permission to access Gmail the first time.
-function importFromGmail() {
+// ── Import from Formspree CSV uploaded to Google Drive ───────────────────────
+// 1. Upload your downloaded CSV anywhere in Google Drive
+// 2. Select importFromDriveCSV from the dropdown and click Run
+function importFromDriveCSV() {
   const ui = SpreadsheetApp.getUi();
 
-  const threads = GmailApp.search('subject:"Ayiti Cheri Registration"', 0, 500);
+  // Search Drive for any CSV file with "formspree" in the name
+  const files = DriveApp.searchFiles('title contains "formspree" and mimeType = "text/csv"');
 
-  if (threads.length === 0) {
+  let file = null;
+  if (files.hasNext()) {
+    file = files.next();
+  } else {
+    // Fallback: look for any CSV uploaded recently (last 7 days)
+    const cutoff = new Date();
+    cutoff.setDate(cutoff.getDate() - 7);
+    const recent = DriveApp.searchFiles('mimeType = "text/csv" and modifiedDate > "' + cutoff.toISOString() + '"');
+    if (recent.hasNext()) file = recent.next();
+  }
+
+  if (!file) {
     ui.alert(
-      'No emails found.\n\n' +
-      'Make sure the emails are in your inbox (not spam).\n' +
-      'The script looks for emails with "Ayiti Cheri Registration" in the subject.'
+      'CSV not found in Google Drive.\n\n' +
+      'Upload your Formspree CSV to Google Drive (anywhere), then run this again.\n' +
+      'Make sure the filename contains the word "formspree".'
     );
     return;
   }
 
+  const csvText = file.getBlob().getDataAsString();
+  const rows    = Utilities.parseCsv(csvText);
+
+  if (rows.length < 2) {
+    ui.alert('The CSV file appears to be empty.');
+    return;
+  }
+
+  const headers = rows[0].map(h => h.toLowerCase().trim());
+  const col = name => headers.indexOf(name);
+
   const ss    = SpreadsheetApp.openById('1-1tXYk2blhMCHk8k8mxfirz4oE0z5wv9xcPAkSnK94w');
   const sheet = ss.getActiveSheet();
 
-  // Helper: extract a field value from Formspree email body
-  function get(body, key) {
-    // Formspree formats fields as "key: value" — try a few casing variants
-    const pattern = new RegExp(
-      '(?:^|\\n)' + key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\s*:\\s*([^\\n]+)',
-      'i'
-    );
-    const m = body.match(pattern);
-    return m ? m[1].trim() : '';
+  let imported = 0;
+  for (let r = 1; r < rows.length; r++) {
+    const row = rows[r];
+    if (!row || row.every(c => !c)) continue;
+
+    sheet.appendRow([
+      row[col('date')]               || row[col('timestamp')]        || row[col('created_at')] || '',
+      row[col('masqueradercount')]   || row[col('masquerader count')] || '1',
+      row[col('masqueraders')]       || '',
+      row[col('parentname')]         || row[col('parent name')]       || row[col('name')] || '',
+      row[col('phone')]              || '',
+      row[col('email')]              || '',
+      row[col('instagram')]          || 'N/A',
+      row[col('tiktok')]             || 'N/A',
+      row[col('apparel')]            || 'None',
+      row[col('notes')]              || 'None',
+      row[col('estimatedtotal')]     || row[col('estimated total')]   || '',
+      row[col('depositdue')]         || row[col('deposit due')]       || '',
+    ]);
+    imported++;
   }
 
-  let imported = 0;
-
-  threads.forEach(function(thread) {
-    thread.getMessages().forEach(function(msg) {
-      const body = msg.getPlainBody();
-      const date = Utilities.formatDate(msg.getDate(), 'America/Toronto', 'yyyy-MM-dd HH:mm:ss');
-
-      sheet.appendRow([
-        date,
-        get(body, 'masqueraderCount') || get(body, 'masquerader count') || '1',
-        get(body, 'masqueraders')     || '',
-        get(body, 'parentName')       || get(body, 'parent name')       || '',
-        get(body, 'phone')            || '',
-        get(body, 'email')            || '',
-        get(body, 'instagram')        || 'N/A',
-        get(body, 'tiktok')           || 'N/A',
-        get(body, 'apparel')          || 'None',
-        get(body, 'notes')            || 'None',
-        get(body, 'estimatedTotal')   || get(body, 'estimated total')   || '',
-        get(body, 'depositDue')       || get(body, 'deposit due')       || '',
-      ]);
-      imported++;
-    });
-  });
-
-  ui.alert('Done! Imported ' + imported + ' registrations from Gmail.');
+  ui.alert('Done! Imported ' + imported + ' registrations from "' + file.getName() + '".');
 }
