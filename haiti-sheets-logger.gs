@@ -20,7 +20,6 @@ var SPREADSHEET_ID = '1-1tXYk2blhMCHk8k8mxfirz4oE0z5wv9xcPAkSnK94w';
 
 var HEADERS = [
   'Timestamp',
-  'Masq #',
   'First Name',
   'Last Name',
   'Age',
@@ -54,19 +53,18 @@ function doGet(e) {
       hr.setFontColor('#ffffff');
       sheet.setFrozenRows(1);
       sheet.setColumnWidth(1,  160);  // Timestamp
-      sheet.setColumnWidth(3,  130);  // First Name
-      sheet.setColumnWidth(4,  130);  // Last Name
-      sheet.setColumnWidth(7,  160);  // Costume
-      sheet.setColumnWidth(10, 160);  // Add-ons
-      sheet.setColumnWidth(11, 150);  // Parent Name
-      sheet.setColumnWidth(13, 200);  // Email
-      sheet.setColumnWidth(16, 200);  // Parent Apparel
-      sheet.setColumnWidth(17, 200);  // Notes
+      sheet.setColumnWidth(2,  130);  // First Name
+      sheet.setColumnWidth(3,  130);  // Last Name
+      sheet.setColumnWidth(6,  160);  // Costume
+      sheet.setColumnWidth(9,  160);  // Add-ons
+      sheet.setColumnWidth(10, 150);  // Parent Name
+      sheet.setColumnWidth(12, 200);  // Email
+      sheet.setColumnWidth(15, 200);  // Parent Apparel
+      sheet.setColumnWidth(16, 200);  // Notes
     }
 
     sheet.appendRow([
       new Date(),
-      p.masqNum        || '1',
       p.firstName      || '',
       p.lastName       || '',
       p.age            || '',
@@ -149,7 +147,6 @@ function importFromDriveCSV() {
 
         sheet.appendRow([
           row[col('date')] || row[col('timestamp')] || row[col('created_at')] || '',
-          idx + 1,
           name.split(' ')[0] || '',
           name.split(' ').slice(1).join(' ') || '',
           age,
