@@ -1837,12 +1837,20 @@
     var SHEETS_LOGGER_URL = 'SHEETS_LOGGER_URL';
     if (SHEETS_LOGGER_URL !== 'SHEETS_LOGGER_URL') {
       try {
-        await fetch(SHEETS_LOGGER_URL, {
-          method: 'POST',
-          headers: {'Content-Type':'application/json'},
-          body: JSON.stringify(formData),
-          mode: 'no-cors'
+        var params = new URLSearchParams({
+          masqueraderCount: formData.masqueraderCount,
+          masqueraders:     formData.masqueraders,
+          parentName:       formData.parentName,
+          phone:            formData.phone,
+          email:            formData.email,
+          instagram:        formData.instagram,
+          tiktok:           formData.tiktok,
+          apparel:          formData.apparel,
+          notes:            formData.notes,
+          estimatedTotal:   formData.estimatedTotal,
+          depositDue:       formData.depositDue
         });
+        await fetch(SHEETS_LOGGER_URL + '?' + params.toString(), { mode: 'no-cors' });
       } catch(err){ console.error('Sheets logger error:', err); }
     }
 
