@@ -1350,6 +1350,8 @@
   </p>
 </footer>
 
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
 <script>
   // ── Multi-masquerader ─────────────────────────────────────────────────────
   var MASQ_COUNT = 1;
@@ -1838,7 +1840,7 @@
     if (HAITI_SERVICE_ID !== 'HAITI_SERVICE_ID') {
       try {
         await emailjs.send(HAITI_SERVICE_ID, HAITI_TEMPLATE_ID, {
-          to_email:       formData.email,
+          email:          formData.email,
           to_name:        formData.parentName,
           masqueraders:   formData.masqueraders,
           apparel:        formData.apparel !== 'None' ? formData.apparel : '',
@@ -1960,8 +1962,6 @@
   resetTimer();
   emailjs.init('_Xsr60054Ozk408fG');
 </script>
-
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
 <div id="photoModal" class="photo-modal" onclick="closeModal()">
   <div class="modal-inner" onclick="event.stopPropagation()">

@@ -18,26 +18,11 @@
 
 var SPREADSHEET_ID = '1-1tXYk2blhMCHk8k8mxfirz4oE0z5wv9xcPAkSnK94w';
 
-var HEADERS = [
-  'Timestamp',
-  'First Name',
-  'Last Name',
-  'Age',
-  'Gender',
-  'Costume',
-  'Child Size',
-  'Adult Size',
-  'Add-ons',
-  'Parent Name',
-  'Phone',
-  'Email',
-  'Instagram',
-  'TikTok',
-  'Parent Apparel',
-  'Notes',
-  'Estimated Total',
-  'Deposit Due',
-];
+// Column layout (matches sheet):
+// A: Timestamp  B: #  C: First Name  D: Last Name  E: Age  F: Gender
+// G: Costume  H: Child Size  I: Adult Size  J: Add-ons  K: Parent Name
+// L: Phone  M: Email  N: Instagram  O: TikTok  P: Parent Apparel
+// Q: Notes  R: Estimated Total  S: Deposit Due
 
 function doGet(e) {
   try {
@@ -45,43 +30,29 @@ function doGet(e) {
     const sheet = ss.getActiveSheet();
     const p     = e.parameter;
 
-    if (sheet.getLastRow() === 0) {
-      sheet.appendRow(HEADERS);
-      const hr = sheet.getRange(1, 1, 1, HEADERS.length);
-      hr.setFontWeight('bold');
-      hr.setBackground('#880e0e');
-      hr.setFontColor('#ffffff');
-      sheet.setFrozenRows(1);
-      sheet.setColumnWidth(1,  160);  // Timestamp
-      sheet.setColumnWidth(2,  130);  // First Name
-      sheet.setColumnWidth(3,  130);  // Last Name
-      sheet.setColumnWidth(6,  160);  // Costume
-      sheet.setColumnWidth(9,  160);  // Add-ons
-      sheet.setColumnWidth(10, 150);  // Parent Name
-      sheet.setColumnWidth(12, 200);  // Email
-      sheet.setColumnWidth(15, 200);  // Parent Apparel
-      sheet.setColumnWidth(16, 200);  // Notes
-    }
+    // Auto-increment # — count existing data rows (row 1 = header)
+    const rowNum = Math.max(sheet.getLastRow(), 1);
 
     sheet.appendRow([
-      new Date(),
-      p.firstName      || '',
-      p.lastName       || '',
-      p.age            || '',
-      p.gender         || '',
-      p.costume        || '',
-      p.childSize      || '',
-      p.adultSize      || '',
-      p.addons         || '',
-      p.parentName     || '',
-      p.phone          || '',
-      p.email          || '',
-      p.instagram      || '',
-      p.tiktok         || '',
-      p.apparel        || '',
-      p.notes          || '',
-      p.estimatedTotal || '',
-      p.depositDue     || '',
+      new Date(),           // A: Timestamp
+      rowNum,               // B: #
+      p.firstName      || '', // C: First Name
+      p.lastName       || '', // D: Last Name
+      p.age            || '', // E: Age
+      p.gender         || '', // F: Gender
+      p.costume        || '', // G: Costume
+      p.childSize      || '', // H: Child Size
+      p.adultSize      || '', // I: Adult Size
+      p.addons         || '', // J: Add-ons
+      p.parentName     || '', // K: Parent Name
+      p.phone          || '', // L: Phone
+      p.email          || '', // M: Email
+      p.instagram      || '', // N: Instagram
+      p.tiktok         || '', // O: TikTok
+      p.apparel        || '', // P: Parent Apparel
+      p.notes          || '', // Q: Notes
+      p.estimatedTotal || '', // R: Estimated Total
+      p.depositDue     || '', // S: Deposit Due
     ]);
 
     return ContentService.createTextOutput('OK');
